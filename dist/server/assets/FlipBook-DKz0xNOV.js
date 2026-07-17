@@ -1,14 +1,14 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, useRef } from "react";
 import { PageFlip } from "page-flip";
-import { m as monogram } from "./index-Zz5vCj9R.js";
+import { m as monogram } from "./index-PtXKJx6G.js";
 import emailjs from "@emailjs/browser";
 function Cover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden", children: [
     /* @__PURE__ */ jsxs("div", { className: "flex w-full max-w-[92%] flex-col items-center justify-center gap-4 sm:gap-6", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center gap-2 sm:gap-3 fade-up", children: [
         /* @__PURE__ */ jsx("div", { className: "ornament text-lg sm:text-2xl", children: "— ❦ —" }),
-        /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.6em] text-[8px] sm:text-[10px] text-[var(--gold-soft)] uppercase", children: "Save the Date" })
+        /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.6em] text-[8px] sm:text-[10px] text-(--gold-soft) uppercase", children: "Save the Date" })
       ] }),
       /* @__PURE__ */ jsxs(
         "div",
@@ -19,7 +19,7 @@ function Cover() {
             /* @__PURE__ */ jsx(
               "h1",
               {
-                className: "font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-[0.12em] uppercase leading-[1]",
+                className: "font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-[0.12em] uppercase leading-none",
                 style: {
                   color: "#E6C76A",
                   textShadow: "0 2px 6px rgba(0,0,0,0.7), 0 0 1px rgba(168,134,42,1)"
@@ -30,7 +30,7 @@ function Cover() {
             /* @__PURE__ */ jsx(
               "span",
               {
-                className: "font-script text-[var(--gold-soft)] text-3xl sm:text-4xl md:text-5xl -my-1",
+                className: "font-script text-(--gold-soft) text-3xl sm:text-4xl md:text-5xl -my-1",
                 style: { textShadow: "0 2px 4px rgba(0,0,0,0.6)" },
                 children: "&"
               }
@@ -38,7 +38,7 @@ function Cover() {
             /* @__PURE__ */ jsx(
               "h1",
               {
-                className: "font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-[0.12em] uppercase leading-[1]",
+                className: "font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-[0.12em] uppercase leading-none",
                 style: {
                   color: "#E6C76A",
                   textShadow: "0 2px 6px rgba(0,0,0,0.7), 0 0 1px rgba(168,134,42,1)"
@@ -56,17 +56,17 @@ function Cover() {
           style: { animationDelay: "0.9s" },
           children: [
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
-            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[8px] sm:text-[11px] text-[var(--pearl)]/85 uppercase", children: "21 · 11 · 2026" }),
+            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[8px] sm:text-[11px] text-(--pearl)/85 uppercase", children: "21 · 11 · 2026" }),
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
-            /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[10px] sm:text-xs text-[var(--pearl)]/70 mt-1 sm:mt-2", children: "Manaus · Amazonas" })
+            /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[10px] sm:text-xs text-(--pearl)/70 mt-1 sm:mt-2", children: "Manaus · Amazonas" })
           ]
         }
       )
     ] }),
-    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute top-4 sm:top-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-l border-[var(--gold)]/70" }),
-    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute top-4 sm:top-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-r border-[var(--gold)]/70" }),
-    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute bottom-4 sm:bottom-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-l border-[var(--gold)]/70" }),
-    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute bottom-4 sm:bottom-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-r border-[var(--gold)]/70" })
+    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute top-4 sm:top-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-l border-(--gold)/70" }),
+    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute top-4 sm:top-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-r border-(--gold)/70" }),
+    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute bottom-4 sm:bottom-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-l border-(--gold)/70" }),
+    /* @__PURE__ */ jsx("div", { className: "hidden sm:block absolute bottom-4 sm:bottom-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-r border-(--gold)/70" })
   ] });
 }
 function PageFrame({
@@ -361,9 +361,9 @@ function PageRSVP() {
   };
   return /* @__PURE__ */ jsx(PageFrame, { pageNumber: "VIII", children: sent ? /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up text-center px-2 sm:px-4", children: [
     /* @__PURE__ */ jsx("div", { className: "ornament text-lg sm:text-2xl", children: "— ❦ —" }),
-    /* @__PURE__ */ jsx("h2", { className: "font-script text-4xl sm:text-5xl md:text-6xl leading-tight text-[var(--emerald)] max-w-[300px] shimmer", children: "Obrigado" }),
+    /* @__PURE__ */ jsx("h2", { className: "font-script text-4xl sm:text-5xl md:text-6xl leading-tight text-(--emerald) max-w-75 shimmer", children: "Obrigado" }),
     /* @__PURE__ */ jsx("div", { className: "gold-line w-20 sm:w-24" }),
-    /* @__PURE__ */ jsxs("p", { className: "font-serif italic text-[var(--ink)] text-[14px] sm:text-[16px] max-w-[300px] leading-relaxed", children: [
+    /* @__PURE__ */ jsxs("p", { className: "font-serif italic text-(--ink) text-[14px] sm:text-[16px] max-w-75 leading-relaxed", children: [
       "Obrigado por sua resposta.",
       /* @__PURE__ */ jsx("br", {}),
       /* @__PURE__ */ jsx("br", {}),
@@ -377,96 +377,80 @@ function PageRSVP() {
         className: "w-14 sm:w-16 h-14 sm:h-16 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"
       }
     ) })
-  ] }) : /* @__PURE__ */ jsxs(
-    "div",
-    {
-      className: "flex flex-col items-center w-full gap-1 sm:gap-2 fade-up",
-      onPointerDown: (e) => e.stopPropagation(),
-      onTouchStart: (e) => e.stopPropagation(),
-      onMouseDown: (e) => e.stopPropagation(),
-      onTouchMove: (e) => e.stopPropagation(),
-      children: [
-        /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.35em] text-[8px] sm:text-[9px] uppercase text-[var(--gold-deep)]", children: "Confirme" }),
-        /* @__PURE__ */ jsx("h2", { className: "font-display text-[14px] sm:text-[16px] tracking-[0.06em] leading-snug text-[var(--emerald)] max-w-[280px] text-center uppercase", children: "Receba o Convite Oficial" }),
-        /* @__PURE__ */ jsx("div", { className: "gold-line w-12 sm:w-16" }),
-        /* @__PURE__ */ jsx("p", { className: "font-serif italic text-center text-[var(--ink)] text-[11px] sm:text-[12px] leading-snug max-w-[280px]", children: "Gostaríamos de saber se você deseja receber nosso convite oficial." }),
-        /* @__PURE__ */ jsxs(
-          "form",
-          {
-            onSubmit: handleSubmit,
-            className: "w-full flex flex-col gap-2 sm:gap-2.5 mt-1 sm:mt-2",
-            children: [
-              /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-0.5 sm:gap-1", children: [
-                /* @__PURE__ */ jsx("label", { className: "font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-[var(--gold-deep)] text-left", children: "Nome completo *" }),
-                /* @__PURE__ */ jsx(
-                  "input",
-                  {
-                    type: "text",
-                    value: name,
-                    onChange: (e) => setName(e.target.value),
-                    onPointerDown: (e) => e.stopPropagation(),
-                    onTouchStart: (e) => e.stopPropagation(),
-                    onMouseDown: (e) => e.stopPropagation(),
-                    className: "bg-transparent border-b border-[var(--gold)]/50 focus:border-[var(--gold)] outline-none font-serif text-[var(--ink)] text-[13px] sm:text-[15px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-[var(--ink)]/50",
-                    placeholder: "Seu nome completo",
-                    autoComplete: "name"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-0.5 sm:gap-1", children: [
-                /* @__PURE__ */ jsx("label", { className: "font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-[var(--gold-deep)] text-left", children: "Mensagem aos noivos" }),
-                /* @__PURE__ */ jsx(
-                  "textarea",
-                  {
-                    value: message,
-                    onChange: (e) => setMessage(e.target.value),
-                    onPointerDown: (e) => e.stopPropagation(),
-                    onTouchStart: (e) => e.stopPropagation(),
-                    onMouseDown: (e) => e.stopPropagation(),
-                    rows: 2,
-                    className: "bg-transparent border border-[var(--gold)]/30 focus:border-[var(--gold)] outline-none font-serif italic text-[var(--ink)] text-[12px] sm:text-[14px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-[var(--ink)]/50",
-                    placeholder: "Opcional"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsx("p", { className: "font-serif italic text-center text-[var(--ink)] text-[12px] sm:text-[13px]", children: "Deseja receber nosso convite oficial?" }),
-              /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-2 gap-1.5 sm:gap-2", children: [
-                /* @__PURE__ */ jsx(
-                  "button",
-                  {
-                    type: "button",
-                    onClick: () => setAnswer("sim"),
-                    className: `font-serif text-[10px] sm:text-[12px] tracking-[0.05em] py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-[40px] sm:min-h-[44px] ${answer === "sim" ? "border-[var(--gold)] bg-[var(--emerald)]/10 text-[var(--emerald)] shadow-[0_0_14px_rgba(212,175,55,0.45)]" : "border-[var(--gold)]/30 text-[var(--ink)] hover:border-[var(--gold)]/60"}`,
-                    children: "Sim"
-                  }
-                ),
-                /* @__PURE__ */ jsx(
-                  "button",
-                  {
-                    type: "button",
-                    onClick: () => setAnswer("nao"),
-                    className: `font-serif text-[10px] sm:text-[12px] tracking-[0.05em] py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-[40px] sm:min-h-[44px] ${answer === "nao" ? "border-[var(--gold)] bg-[var(--emerald)]/10 text-[var(--emerald)] shadow-[0_0_14px_rgba(212,175,55,0.45)]" : "border-[var(--gold)]/30 text-[var(--ink)] hover:border-[var(--gold)]/60"}`,
-                    children: "Não"
-                  }
-                )
-              ] }),
-              error && /* @__PURE__ */ jsx("p", { className: "text-[10px] sm:text-[12px] text-red-700 font-serif italic text-center leading-snug", children: error }),
-              /* @__PURE__ */ jsx(
-                "button",
-                {
-                  type: "submit",
-                  disabled: sending,
-                  className: "font-serif tracking-[0.3em] uppercase text-[11px] sm:text-[12px] py-2.5 sm:py-3 px-3 sm:px-4 bg-[var(--emerald)] text-[var(--pearl)] border border-[var(--gold)] hover:bg-[var(--emerald-deep)] hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-[44px] sm:min-h-[48px]",
-                  children: sending ? "Enviando..." : "Enviar resposta"
-                }
-              ),
-              !isConfigured && !sent && /* @__PURE__ */ jsx("p", { className: "text-[9px] sm:text-[10px] text-[var(--gold-deep)] font-serif italic text-center leading-snug", children: "O envio abrirá seu app de e-mail com a resposta preenchida." })
-            ]
-          }
-        )
-      ]
-    }
-  ) });
+  ] }) : /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center w-full gap-1 sm:gap-2 fade-up", children: [
+    /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.35em] text-[8px] sm:text-[9px] uppercase text-(--gold-deep)", children: "Confirme" }),
+    /* @__PURE__ */ jsx("h2", { className: "font-display text-[14px] sm:text-[16px] tracking-[0.06em] leading-snug text-(--emerald) max-w-70 text-center uppercase", children: "Receba o Convite Oficial" }),
+    /* @__PURE__ */ jsx("div", { className: "gold-line w-12 sm:w-16" }),
+    /* @__PURE__ */ jsx("p", { className: "font-serif italic text-center text-(--ink) text-[11px] sm:text-[12px] leading-snug max-w-70", children: "Gostaríamos de saber se você deseja receber nosso convite oficial." }),
+    /* @__PURE__ */ jsxs(
+      "form",
+      {
+        onSubmit: handleSubmit,
+        className: "w-full flex flex-col gap-2 sm:gap-2.5 mt-1 sm:mt-2",
+        children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-0.5 sm:gap-1", children: [
+            /* @__PURE__ */ jsx("label", { className: "font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-(--gold-deep) text-left", children: "Nome completo *" }),
+            /* @__PURE__ */ jsx(
+              "input",
+              {
+                type: "text",
+                value: name,
+                onChange: (e) => setName(e.target.value),
+                className: "bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[13px] sm:text-[15px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50",
+                placeholder: "Seu nome completo",
+                autoComplete: "name"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-0.5 sm:gap-1", children: [
+            /* @__PURE__ */ jsx("label", { className: "font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-(--gold-deep) text-left", children: "Mensagem aos noivos" }),
+            /* @__PURE__ */ jsx(
+              "textarea",
+              {
+                value: message,
+                onChange: (e) => setMessage(e.target.value),
+                rows: 2,
+                className: "bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[12px] sm:text-[14px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-(--ink)/50",
+                placeholder: "Opcional"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsx("p", { className: "font-serif italic text-center text-(--ink) text-[12px] sm:text-[13px]", children: "Deseja receber nosso convite oficial?" }),
+          /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-2 gap-1.5 sm:gap-2", children: [
+            /* @__PURE__ */ jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setAnswer("sim"),
+                className: `font-serif text-[10px] sm:text-[12px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${answer === "sim" ? "border-(--gold) bg-(--emerald)/10 text-(--emerald) shadow-[0_0_14px_rgba(212,175,55,0.45)]" : "border-(--gold)/30 text-(--ink) hover:border-(--gold)/60"}`,
+                children: "Sim"
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setAnswer("nao"),
+                className: `font-serif text-[10px] sm:text-[12px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${answer === "nao" ? "border-(--gold) bg-(--emerald)/10 text-(--emerald) shadow-[0_0_14px_rgba(212,175,55,0.45)]" : "border-(--gold)/30 text-(--ink) hover:border-(--gold)/60"}`,
+                children: "Não"
+              }
+            )
+          ] }),
+          error && /* @__PURE__ */ jsx("p", { className: "text-[10px] sm:text-[12px] text-red-700 font-serif italic text-center leading-snug", children: error }),
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              type: "submit",
+              disabled: sending,
+              className: "font-serif tracking-[0.3em] uppercase text-[11px] sm:text-[12px] py-2.5 sm:py-3 px-3 sm:px-4 bg-(--emerald) text-(--pearl) border border-(--gold) hover:bg-(--emerald-deep) hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-11 sm:min-h-12",
+              children: sending ? "Enviando..." : "Enviar resposta"
+            }
+          ),
+          !isConfigured && !sent && /* @__PURE__ */ jsx("p", { className: "text-[9px] sm:text-[10px] text-(--gold-deep) font-serif italic text-center leading-snug", children: "O envio abrirá seu app de e-mail com a resposta preenchida." })
+        ]
+      }
+    )
+  ] }) });
 }
 function BackCover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover w-full h-full flex flex-col items-center justify-center text-center px-4 sm:px-6 gap-3 sm:gap-4", children: [
@@ -505,6 +489,7 @@ function getBookSize() {
   }
   return { width, height };
 }
+const RSVP_KEY = "p8";
 const pages = [
   { key: "cover", el: /* @__PURE__ */ jsx(Cover, {}), kind: "hard" },
   { key: "p1", el: /* @__PURE__ */ jsx(PageReserve, {}), kind: "soft" },
@@ -514,13 +499,28 @@ const pages = [
   { key: "p5", el: /* @__PURE__ */ jsx(PageProposal, {}), kind: "soft" },
   { key: "p6", el: /* @__PURE__ */ jsx(PageLocation, {}), kind: "soft" },
   { key: "p7", el: /* @__PURE__ */ jsx(PageFinal, {}), kind: "soft" },
-  { key: "p8", el: /* @__PURE__ */ jsx(PageRSVP, {}), kind: "soft" },
+  { key: RSVP_KEY, el: /* @__PURE__ */ jsx(PageRSVP, {}), kind: "soft" },
   { key: "back", el: /* @__PURE__ */ jsx(BackCover, {}), kind: "hard" }
 ];
+const RSVP_INDEX = pages.findIndex((p) => p.key === RSVP_KEY);
 function FlipBook() {
   const containerRef = useRef(null);
+  const stageRef = useRef(null);
   const flipRef = useRef(null);
   const [pageIndex, setPageIndex] = useState(0);
+  const [bookSize, setBookSize] = useState(() => getBookSize());
+  const [overlayRect, setOverlayRect] = useState(null);
+  const measureOverlay = () => {
+    if (!containerRef.current || !stageRef.current) return;
+    const bookRect = containerRef.current.getBoundingClientRect();
+    const stageRect = stageRef.current.getBoundingClientRect();
+    setOverlayRect({
+      top: bookRect.top - stageRect.top,
+      left: bookRect.left - stageRect.left,
+      width: bookRect.width,
+      height: bookRect.height
+    });
+  };
   useEffect(() => {
     if (!containerRef.current) return;
     let rafId;
@@ -542,13 +542,14 @@ function FlipBook() {
       if (!containerRef.current || destroyed) return;
       destroyBook();
       const { width, height } = getBookSize();
+      setBookSize({ width, height });
       const pf = new PageFlip(containerRef.current, {
         width,
         height,
         size: "stretch",
-        minWidth: 220,
+        minWidth: width,
         maxWidth: 700,
-        minHeight: 320,
+        minHeight: height,
         maxHeight: 1100,
         maxShadowOpacity: 0.6,
         showCover: true,
@@ -563,42 +564,84 @@ function FlipBook() {
         showPageCorners: true
       });
       flipRef.current = pf;
-      pf.on("flip", (e) => setPageIndex(Number(e.data)));
+      pf.on("flip", (e) => {
+        setPageIndex(Number(e.data));
+        requestAnimationFrame(measureOverlay);
+      });
       rafId = requestAnimationFrame(() => {
         if (!containerRef.current || destroyed) return;
         try {
-          const pages2 = containerRef.current?.querySelectorAll(".book-page");
-          if (pages2 && pages2.length) {
-            pf.loadFromHTML(pages2);
+          const pageEls = containerRef.current?.querySelectorAll(".book-page");
+          if (pageEls && pageEls.length) {
+            pf.loadFromHTML(pageEls);
           }
+          requestAnimationFrame(measureOverlay);
         } catch (err) {
           console.error("PageFlip load error:", err);
         }
       });
     };
     initializeBook();
-    const handleResize = () => initializeBook();
+    let resizeTimeout;
+    const handleResize = () => {
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(() => {
+        initializeBook();
+      }, 300);
+    };
     window.addEventListener("resize", handleResize);
     window.visualViewport?.addEventListener("resize", handleResize);
     return () => {
       destroyed = true;
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
       window.visualViewport?.removeEventListener("resize", handleResize);
       destroyBook();
     };
   }, []);
   const total = pages.length;
+  const showOverlay = pageIndex === RSVP_INDEX;
   return /* @__PURE__ */ jsxs("div", { className: "relative w-full h-full flex flex-col items-center justify-between py-1", children: [
-    /* @__PURE__ */ jsx("div", { className: "book-stage w-full flex-1 flex items-center justify-center px-1 sm:px-2", children: /* @__PURE__ */ jsx("div", { ref: containerRef, className: "w-full h-full max-w-full max-h-full", children: pages.map((p) => /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxs(
       "div",
       {
-        className: "book-page",
-        "data-density": p.kind,
-        style: { overflow: "hidden" },
-        children: p.el
-      },
-      p.key
-    )) }) }),
+        ref: stageRef,
+        className: "book-stage relative w-full flex-1 flex items-center justify-center px-1 sm:px-2",
+        children: [
+          /* @__PURE__ */ jsx(
+            "div",
+            {
+              ref: containerRef,
+              style: { width: bookSize.width, height: bookSize.height },
+              children: pages.map((p) => /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: "book-page",
+                  "data-density": p.kind,
+                  style: { overflow: "hidden" },
+                  children: p.el
+                },
+                p.key
+              ))
+            }
+          ),
+          showOverlay && overlayRect && /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: "absolute",
+              style: {
+                top: overlayRect.top,
+                left: overlayRect.left,
+                width: overlayRect.width,
+                height: overlayRect.height,
+                zIndex: 1e3
+              },
+              children: /* @__PURE__ */ jsx(PageRSVP, {})
+            }
+          )
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxs("div", { className: "pt-2 pb-2 flex items-center gap-3 select-none", children: [
       /* @__PURE__ */ jsx(
         "button",
