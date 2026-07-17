@@ -173,7 +173,7 @@ function Index() {
             <p className="font-serif italic text-[var(--pearl)]/80 text-base sm:text-lg max-w-xs leading-relaxed">
               Uma nova história está prestes a começar.
             </p>
-            <p className="font-numeric tracking-[0.3em] text-[13px] text-[var(--gold-soft)] mt-1">
+            <p className="font-numeric tracking-[0.3em] text-[18px] sm:text-[22px] text-[var(--gold-soft)] mt-2">
               21 · 11 · 2026
             </p>
           </div>

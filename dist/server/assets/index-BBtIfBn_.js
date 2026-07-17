@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, Suspense, lazy } from "react";
 const monogram = "/assets/ar-monogram-transparent-x9-flqyx.png";
-const FlipBook = lazy(() => import("./FlipBook-C6LHz0NX.js").then((m) => ({
+const FlipBook = lazy(() => import("./FlipBook-BKu5DZkD.js").then((m) => ({
   default: m.FlipBook
 })));
 function Particles({
@@ -84,7 +84,7 @@ function Index() {
           /* @__PURE__ */ jsx("div", { className: "gold-line w-24" }),
           /* @__PURE__ */ jsx("h1", { className: "font-display text-[30px] sm:text-[40px] tracking-[0.08em] uppercase leading-tight text-[var(--pearl)] drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]", children: "Alleane & Rafael" }),
           /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[var(--pearl)]/80 text-base sm:text-lg max-w-xs leading-relaxed", children: "Uma nova história está prestes a começar." }),
-          /* @__PURE__ */ jsx("p", { className: "font-numeric tracking-[0.3em] text-[13px] text-[var(--gold-soft)] mt-1", children: "21 · 11 · 2026" })
+          /* @__PURE__ */ jsx("p", { className: "font-numeric tracking-[0.3em] text-[18px] sm:text-[22px] text-[var(--gold-soft)] mt-2", children: "21 · 11 · 2026" })
         ] })
       ] }),
       /* @__PURE__ */ jsx("div", { className: `mt-10 transition-all duration-1000 ${showBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`, children: /* @__PURE__ */ jsx("button", { className: "btn-luxury", onClick: openBook, children: "Abrir Livro" }) })

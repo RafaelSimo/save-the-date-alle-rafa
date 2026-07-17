@@ -20,7 +20,7 @@ export function PageFinal() {
             className="w-14 sm:w-16 h-14 sm:h-16 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.5)] shimmer"
           />
           <div className="gold-line w-24 sm:w-32 mt-1.5 sm:mt-2" />
-          <p className="font-serif tracking-[0.45em] text-[9px] sm:text-[11px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2">
+          <p className="font-serif tracking-[0.45em] text-[12px] sm:text-[14px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2">
             21 · 11 · 2026
           </p>
         </div>

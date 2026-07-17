@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, useRef } from "react";
 import { PageFlip } from "page-flip";
-import { m as monogram } from "./index-ClDS9CW5.js";
+import { m as monogram } from "./index-BBtIfBn_.js";
 import emailjs from "@emailjs/browser";
 function Cover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden", children: [
@@ -56,7 +56,7 @@ function Cover() {
           style: { animationDelay: "0.9s" },
           children: [
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
-            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[10px] sm:text-[11px] text-(--pearl)/85 uppercase", children: "21 · 11 · 2026" }),
+            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[13px] sm:text-[16px] text-(--pearl)/85 uppercase", children: "21 · 11 · 2026" }),
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
             /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[10px] sm:text-xs text-(--pearl)/70 mt-1 sm:mt-2", children: "Manaus · Amazonas" })
           ]
@@ -303,7 +303,7 @@ function PageFinal() {
         }
       ),
       /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-32 mt-1.5 sm:mt-2" }),
-      /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[9px] sm:text-[11px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2", children: "21 · 11 · 2026" })
+      /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[12px] sm:text-[14px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2", children: "21 · 11 · 2026" })
     ] })
   ] }) });
 }

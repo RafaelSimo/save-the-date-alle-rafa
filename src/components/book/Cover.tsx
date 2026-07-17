@@ -44,7 +44,7 @@ export function Cover() {
           style={{ animationDelay: "0.9s" }}
         >
           <div className="gold-line w-24 sm:w-40" />
-          <p className="font-serif tracking-[0.45em] text-[10px] sm:text-[11px] text-(--pearl)/85 uppercase">
+          <p className="font-serif tracking-[0.45em] text-[13px] sm:text-[16px] text-(--pearl)/85 uppercase">
             21 · 11 · 2026
           </p>
           <div className="gold-line w-24 sm:w-40" />
