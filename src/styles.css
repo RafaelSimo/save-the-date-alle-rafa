@@ -51,6 +51,8 @@ body,
   color: var(--pearl);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   overscroll-behavior: none;
   touch-action: pan-y;
 }
@@ -150,16 +152,27 @@ body {
 .cover::after {
   content: "";
   position: absolute;
-  inset: 14px;
+  inset: 8px;
   border: 1px solid rgba(212, 175, 55, 0.55);
   pointer-events: none;
+  transition: inset 0.3s ease;
 }
 .cover::before {
   content: "";
   position: absolute;
-  inset: 20px;
+  inset: 12px;
   border: 1px solid rgba(212, 175, 55, 0.22);
   pointer-events: none;
+  transition: inset 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .cover::after {
+    inset: 14px;
+  }
+  .cover::before {
+    inset: 20px;
+  }
 }
 
 /* Gold particles */

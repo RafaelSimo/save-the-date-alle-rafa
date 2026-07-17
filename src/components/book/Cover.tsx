@@ -1,10 +1,10 @@
 export function Cover() {
   return (
     <div className="cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden">
-      <div className="flex w-full max-w-[92%] flex-col items-center justify-center gap-4 sm:gap-6">
-        <div className="flex flex-col items-center gap-2 sm:gap-3 fade-up">
+      <div className="flex w-full max-w-[92%] flex-col items-center justify-center gap-3.5 sm:gap-6">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-3 fade-up">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
-          <p className="font-serif tracking-[0.6em] text-[8px] sm:text-[10px] text-(--gold-soft) uppercase">
+          <p className="font-serif tracking-[0.6em] text-[10px] sm:text-[10px] text-(--gold-soft) uppercase">
             Save the Date
           </p>
         </div>
@@ -40,11 +40,11 @@ export function Cover() {
         </div>
 
         <div
-          className="flex flex-col items-center gap-2 sm:gap-3 fade-up"
+          className="flex flex-col items-center gap-1.5 sm:gap-3 fade-up"
           style={{ animationDelay: "0.9s" }}
         >
           <div className="gold-line w-24 sm:w-40" />
-          <p className="font-serif tracking-[0.45em] text-[8px] sm:text-[11px] text-(--pearl)/85 uppercase">
+          <p className="font-serif tracking-[0.45em] text-[10px] sm:text-[11px] text-(--pearl)/85 uppercase">
             21 · 11 · 2026
           </p>
           <div className="gold-line w-24 sm:w-40" />

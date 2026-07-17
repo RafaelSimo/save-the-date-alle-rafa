@@ -1,14 +1,14 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, useRef } from "react";
 import { PageFlip } from "page-flip";
-import { m as monogram } from "./index-PtXKJx6G.js";
+import { m as monogram } from "./index-ClDS9CW5.js";
 import emailjs from "@emailjs/browser";
 function Cover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden", children: [
-    /* @__PURE__ */ jsxs("div", { className: "flex w-full max-w-[92%] flex-col items-center justify-center gap-4 sm:gap-6", children: [
-      /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center gap-2 sm:gap-3 fade-up", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex w-full max-w-[92%] flex-col items-center justify-center gap-3.5 sm:gap-6", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center gap-1.5 sm:gap-3 fade-up", children: [
         /* @__PURE__ */ jsx("div", { className: "ornament text-lg sm:text-2xl", children: "— ❦ —" }),
-        /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.6em] text-[8px] sm:text-[10px] text-(--gold-soft) uppercase", children: "Save the Date" })
+        /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.6em] text-[10px] sm:text-[10px] text-(--gold-soft) uppercase", children: "Save the Date" })
       ] }),
       /* @__PURE__ */ jsxs(
         "div",
@@ -52,11 +52,11 @@ function Cover() {
       /* @__PURE__ */ jsxs(
         "div",
         {
-          className: "flex flex-col items-center gap-2 sm:gap-3 fade-up",
+          className: "flex flex-col items-center gap-1.5 sm:gap-3 fade-up",
           style: { animationDelay: "0.9s" },
           children: [
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
-            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[8px] sm:text-[11px] text-(--pearl)/85 uppercase", children: "21 · 11 · 2026" }),
+            /* @__PURE__ */ jsx("p", { className: "font-serif tracking-[0.45em] text-[10px] sm:text-[11px] text-(--pearl)/85 uppercase", children: "21 · 11 · 2026" }),
             /* @__PURE__ */ jsx("div", { className: "gold-line w-24 sm:w-40" }),
             /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[10px] sm:text-xs text-(--pearl)/70 mt-1 sm:mt-2", children: "Manaus · Amazonas" })
           ]
@@ -508,6 +508,7 @@ function FlipBook() {
   const stageRef = useRef(null);
   const flipRef = useRef(null);
   const [pageIndex, setPageIndex] = useState(0);
+  const pageIndexRef = useRef(0);
   const [bookSize, setBookSize] = useState(() => getBookSize());
   const [overlayRect, setOverlayRect] = useState(null);
   const measureOverlay = () => {
@@ -525,6 +526,8 @@ function FlipBook() {
     if (!containerRef.current) return;
     let rafId;
     let destroyed = false;
+    let lastBookWidth = 0;
+    let lastBookHeight = 0;
     const destroyBook = () => {
       if (flipRef.current) {
         try {
@@ -540,8 +543,13 @@ function FlipBook() {
     };
     const initializeBook = () => {
       if (!containerRef.current || destroyed) return;
-      destroyBook();
       const { width, height } = getBookSize();
+      if (width === lastBookWidth && height === lastBookHeight && flipRef.current) {
+        return;
+      }
+      lastBookWidth = width;
+      lastBookHeight = height;
+      destroyBook();
       setBookSize({ width, height });
       const pf = new PageFlip(containerRef.current, {
         width,
@@ -553,7 +561,7 @@ function FlipBook() {
         maxHeight: 1100,
         maxShadowOpacity: 0.6,
         showCover: true,
-        mobileScrollSupport: false,
+        mobileScrollSupport: true,
         usePortrait: true,
         drawShadow: true,
         flippingTime: 800,
@@ -565,7 +573,9 @@ function FlipBook() {
       });
       flipRef.current = pf;
       pf.on("flip", (e) => {
-        setPageIndex(Number(e.data));
+        const index = Number(e.data);
+        setPageIndex(index);
+        pageIndexRef.current = index;
         requestAnimationFrame(measureOverlay);
       });
       rafId = requestAnimationFrame(() => {
@@ -574,6 +584,9 @@ function FlipBook() {
           const pageEls = containerRef.current?.querySelectorAll(".book-page");
           if (pageEls && pageEls.length) {
             pf.loadFromHTML(pageEls);
+            if (pageIndexRef.current > 0) {
+              pf.turnToPage(pageIndexRef.current);
+            }
           }
           requestAnimationFrame(measureOverlay);
         } catch (err) {
@@ -582,12 +595,22 @@ function FlipBook() {
       });
     };
     initializeBook();
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
     let resizeTimeout;
     const handleResize = () => {
-      if (resizeTimeout) window.clearTimeout(resizeTimeout);
-      resizeTimeout = window.setTimeout(() => {
-        initializeBook();
-      }, 300);
+      const currentWidth = window.innerWidth;
+      const currentHeight = window.innerHeight;
+      const widthChanged = currentWidth !== lastWidth;
+      const heightChanged = Math.abs(currentHeight - lastHeight) > 80;
+      if (widthChanged || heightChanged) {
+        lastWidth = currentWidth;
+        lastHeight = currentHeight;
+        if (resizeTimeout) window.clearTimeout(resizeTimeout);
+        resizeTimeout = window.setTimeout(() => {
+          initializeBook();
+        }, 300);
+      }
     };
     window.addEventListener("resize", handleResize);
     window.visualViewport?.addEventListener("resize", handleResize);

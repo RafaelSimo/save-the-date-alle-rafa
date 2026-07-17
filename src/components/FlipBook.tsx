@@ -74,6 +74,7 @@ export function FlipBook() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const flipRef = useRef<any>(null);
   const [pageIndex, setPageIndex] = useState(0);
+  const pageIndexRef = useRef(0);
   const [bookSize, setBookSize] = useState(() => getBookSize());
   const [overlayRect, setOverlayRect] = useState<{
     top: number;
@@ -99,6 +100,8 @@ export function FlipBook() {
 
     let rafId: number | undefined;
     let destroyed = false;
+    let lastBookWidth = 0;
+    let lastBookHeight = 0;
 
     const destroyBook = () => {
       if (flipRef.current) {
@@ -117,9 +120,16 @@ export function FlipBook() {
 
     const initializeBook = () => {
       if (!containerRef.current || destroyed) return;
-      destroyBook();
-
+      
       const { width, height } = getBookSize();
+      if (width === lastBookWidth && height === lastBookHeight && flipRef.current) {
+        return;
+      }
+      
+      lastBookWidth = width;
+      lastBookHeight = height;
+      
+      destroyBook();
       setBookSize({ width, height });
 
       const pf = new PageFlip(containerRef.current, {
@@ -132,7 +142,7 @@ export function FlipBook() {
         maxHeight: 1100,
         maxShadowOpacity: 0.6,
         showCover: true,
-        mobileScrollSupport: false,
+        mobileScrollSupport: true,
         usePortrait: true,
         drawShadow: true,
         flippingTime: 800,
@@ -145,7 +155,9 @@ export function FlipBook() {
 
       flipRef.current = pf;
       pf.on("flip", (e: { data: number }) => {
-        setPageIndex(Number(e.data));
+        const index = Number(e.data);
+        setPageIndex(index);
+        pageIndexRef.current = index;
         requestAnimationFrame(measureOverlay);
       });
 
@@ -155,6 +167,9 @@ export function FlipBook() {
           const pageEls = containerRef.current?.querySelectorAll(".book-page");
           if (pageEls && pageEls.length) {
             pf.loadFromHTML(pageEls);
+            if (pageIndexRef.current > 0) {
+              pf.turnToPage(pageIndexRef.current);
+            }
           }
           requestAnimationFrame(measureOverlay);
         } catch (err) {
@@ -165,12 +180,26 @@ export function FlipBook() {
 
     initializeBook();
 
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
     let resizeTimeout: number | undefined;
+    
     const handleResize = () => {
-      if (resizeTimeout) window.clearTimeout(resizeTimeout);
-      resizeTimeout = window.setTimeout(() => {
-        initializeBook();
-      }, 300);
+      const currentWidth = window.innerWidth;
+      const currentHeight = window.innerHeight;
+      
+      const widthChanged = currentWidth !== lastWidth;
+      const heightChanged = Math.abs(currentHeight - lastHeight) > 80;
+
+      if (widthChanged || heightChanged) {
+        lastWidth = currentWidth;
+        lastHeight = currentHeight;
+        
+        if (resizeTimeout) window.clearTimeout(resizeTimeout);
+        resizeTimeout = window.setTimeout(() => {
+          initializeBook();
+        }, 300);
+      }
     };
 
     window.addEventListener("resize", handleResize);
