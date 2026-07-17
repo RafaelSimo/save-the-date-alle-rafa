@@ -278,6 +278,13 @@ body {
   box-shadow: none !important;
 }
 
+/* GPU Acceleration for page elements to prevent mobile lag without overriding library transforms */
+.book-page,
+.cover,
+.paper {
+  will-change: transform;
+}
+
 /* Elegant button */
 .btn-luxury {
   font-family: var(--font-serif);

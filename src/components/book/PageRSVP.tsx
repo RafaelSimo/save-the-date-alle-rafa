@@ -68,16 +68,26 @@ export function PageRSVP() {
         <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up text-center px-2 sm:px-4">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
           <h2 className="font-script text-4xl sm:text-5xl md:text-6xl leading-tight text-(--emerald) max-w-75 shimmer">
-            Obrigado
+            {answer === "sim" ? "Obrigado!" : "Obrigado"}
           </h2>
           <div className="gold-line w-20 sm:w-24" />
-          <p className="font-serif italic text-(--ink) text-[14px] sm:text-[16px] max-w-75 leading-relaxed">
-            Obrigado por sua resposta.
-            <br />
-            <br />
-            Em breve você receberá mais informações sobre este momento tão
-            especial.
-          </p>
+          {answer === "sim" ? (
+            <p className="font-serif italic text-(--ink) text-[16px] sm:text-[19px] max-w-75 leading-relaxed">
+              Ficamos muito felizes com sua confirmação!
+              <br />
+              <br />
+              Em breve você receberá o convite oficial com todos os detalhes
+              deste momento tão especial.
+            </p>
+          ) : (
+            <p className="font-serif italic text-(--ink) text-[16px] sm:text-[19px] max-w-75 leading-relaxed">
+              Sentiremos sua falta, mas agradecemos muito por nos avisar.
+              <br />
+              <br />
+              Ainda assim, você estará em nossos corações nesse dia tão
+              especial.
+            </p>
+          )}
           <div className="mt-3 sm:mt-4 shimmer">
             <img
               src={monogram}
@@ -87,51 +97,51 @@ export function PageRSVP() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center w-full gap-1 sm:gap-2 fade-up">
-          <p className="font-serif tracking-[0.35em] text-[8px] sm:text-[9px] uppercase text-(--gold-deep)">
+        <div className="flex flex-col items-center w-full gap-1.5 sm:gap-2.5 fade-up">
+          <p className="font-serif tracking-[0.35em] text-[10px] sm:text-[12px] uppercase text-(--gold-deep)">
             Confirme
           </p>
-          <h2 className="font-display text-[14px] sm:text-[16px] tracking-[0.06em] leading-snug text-(--emerald) max-w-70 text-center uppercase">
+          <h2 className="font-display text-[17px] sm:text-[19px] tracking-[0.06em] leading-snug text-(--emerald) max-w-70 text-center uppercase">
             Receba o Convite Oficial
           </h2>
           <div className="gold-line w-12 sm:w-16" />
 
-          <p className="font-serif italic text-center text-(--ink) text-[11px] sm:text-[12px] leading-snug max-w-70">
+          <p className="font-serif italic text-center text-(--ink) text-[13px] sm:text-[15px] leading-snug max-w-70">
             Gostaríamos de saber se você deseja receber nosso convite oficial.
           </p>
 
           <form
             onSubmit={handleSubmit}
-            className="w-full flex flex-col gap-2 sm:gap-2.5 mt-1 sm:mt-2"
+            className="w-full flex flex-col gap-2.5 sm:gap-3 mt-1 sm:mt-2"
           >
             <div className="flex flex-col gap-0.5 sm:gap-1">
-              <label className="font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
+              <label className="font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
                 Nome completo *
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[13px] sm:text-[15px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
+                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[15px] sm:text-[17px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Seu nome completo"
                 autoComplete="name"
               />
             </div>
 
             <div className="flex flex-col gap-0.5 sm:gap-1">
-              <label className="font-serif text-[8px] sm:text-[10px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
+              <label className="font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
                 Mensagem aos noivos
               </label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={2}
-                className="bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[12px] sm:text-[14px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-(--ink)/50"
+                className="bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[14px] sm:text-[16px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Opcional"
               />
             </div>
 
-            <p className="font-serif italic text-center text-(--ink) text-[12px] sm:text-[13px]">
+            <p className="font-serif italic text-center text-(--ink) text-[14px] sm:text-[16px]">
               Deseja receber nosso convite oficial?
             </p>
 
@@ -139,7 +149,7 @@ export function PageRSVP() {
               <button
                 type="button"
                 onClick={() => setAnswer("sim")}
-                className={`font-serif text-[10px] sm:text-[12px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${
+                className={`font-serif text-[13px] sm:text-[15px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${
                   answer === "sim"
                     ? "border-(--gold) bg-(--emerald)/10 text-(--emerald) shadow-[0_0_14px_rgba(212,175,55,0.45)]"
                     : "border-(--gold)/30 text-(--ink) hover:border-(--gold)/60"
@@ -150,7 +160,7 @@ export function PageRSVP() {
               <button
                 type="button"
                 onClick={() => setAnswer("nao")}
-                className={`font-serif text-[10px] sm:text-[12px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${
+                className={`font-serif text-[13px] sm:text-[15px] tracking-wider py-2 sm:py-2.5 px-1.5 sm:px-2 border transition-all rounded-sm min-h-10 sm:min-h-11 ${
                   answer === "nao"
                     ? "border-(--gold) bg-(--emerald)/10 text-(--emerald) shadow-[0_0_14px_rgba(212,175,55,0.45)]"
                     : "border-(--gold)/30 text-(--ink) hover:border-(--gold)/60"
@@ -161,7 +171,7 @@ export function PageRSVP() {
             </div>
 
             {error && (
-              <p className="text-[10px] sm:text-[12px] text-red-700 font-serif italic text-center leading-snug">
+              <p className="text-[12px] sm:text-[14px] text-red-700 font-serif italic text-center leading-snug">
                 {error}
               </p>
             )}
@@ -169,13 +179,13 @@ export function PageRSVP() {
             <button
               type="submit"
               disabled={sending}
-              className="font-serif tracking-[0.3em] uppercase text-[11px] sm:text-[12px] py-2.5 sm:py-3 px-3 sm:px-4 bg-(--emerald) text-(--pearl) border border-(--gold) hover:bg-(--emerald-deep) hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-11 sm:min-h-12"
+              className="font-serif tracking-[0.3em] uppercase text-[13px] sm:text-[15px] py-2.5 sm:py-3 px-3 sm:px-4 bg-(--emerald) text-(--pearl) border border-(--gold) hover:bg-(--emerald-deep) hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-11 sm:min-h-12"
             >
               {sending ? "Enviando..." : "Enviar resposta"}
             </button>
 
             {!isConfigured && !sent && (
-              <p className="text-[9px] sm:text-[10px] text-(--gold-deep) font-serif italic text-center leading-snug">
+              <p className="text-[11px] sm:text-[13px] text-(--gold-deep) font-serif italic text-center leading-snug">
                 O envio abrirá seu app de e-mail com a resposta preenchida.
               </p>
             )}

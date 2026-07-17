@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, Suspense, lazy } from "react";
 const monogram = "/assets/ar-monogram-transparent-x9-flqyx.png";
-const FlipBook = lazy(() => import("./FlipBook-BKu5DZkD.js").then((m) => ({
+const FlipBook = lazy(() => import("./FlipBook-C_ZEk_Yr.js").then((m) => ({
   default: m.FlipBook
 })));
 function Particles({
@@ -72,8 +72,8 @@ function Index() {
     setTimeout(() => setStage("book"), 1400);
   };
   return /* @__PURE__ */ jsxs("main", { className: "fixed inset-0 w-screen h-screen overflow-hidden", children: [
-    /* @__PURE__ */ jsx(Particles, {}),
-    /* @__PURE__ */ jsx(Leaves, {}),
+    stage !== "book" && /* @__PURE__ */ jsx(Particles, {}),
+    stage !== "book" && /* @__PURE__ */ jsx(Leaves, {}),
     /* @__PURE__ */ jsxs("section", { className: `absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-1000 ${stage === "intro" ? "opacity-100" : "opacity-0 pointer-events-none"}`, style: {
       background: "radial-gradient(ellipse at center, #0a1f12 0%, #050505 70%)"
     }, children: [

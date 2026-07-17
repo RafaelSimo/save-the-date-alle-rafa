@@ -138,8 +138,8 @@ function Index() {
 
   return (
     <main className="fixed inset-0 w-screen h-screen overflow-hidden">
-      <Particles />
-      <Leaves />
+      {stage !== "book" && <Particles />}
+      {stage !== "book" && <Leaves />}
 
       {/* INTRO */}
       <section
