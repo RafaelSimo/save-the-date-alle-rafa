@@ -13,7 +13,7 @@ export function PageProposal() {
         </h2>
         <div className="gold-line w-20 sm:w-24" />
         <div
-          className="relative w-full max-w-[280px] aspect-[16/10] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.25)]"
+          className="relative w-full max-w-[310px] aspect-[16/10] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.25)]"
         >
           <div className="w-full h-full border border-[var(--gold)] overflow-hidden relative">
             <img
