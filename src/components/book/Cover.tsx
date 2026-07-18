@@ -4,7 +4,7 @@ export function Cover() {
       <div className="flex w-full max-w-[92%] flex-col items-center justify-center gap-3.5 sm:gap-6">
         <div className="flex flex-col items-center gap-1.5 sm:gap-3 fade-up">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
-          <p className="font-serif tracking-[0.6em] text-[10px] sm:text-[10px] text-(--gold-soft) uppercase">
+          <p className="font-serif tracking-[0.6em] text-[12px] sm:text-[14px] text-(--gold-soft) uppercase">
             Save the Date
           </p>
         </div>
@@ -44,11 +44,11 @@ export function Cover() {
           style={{ animationDelay: "0.9s" }}
         >
           <div className="gold-line w-24 sm:w-40" />
-          <p className="font-serif tracking-[0.45em] text-[13px] sm:text-[16px] text-(--pearl)/85 uppercase">
+          <p className="font-serif tracking-[0.45em] text-[16px] sm:text-[20px] text-(--pearl)/85 uppercase">
             21 · 11 · 2026
           </p>
           <div className="gold-line w-24 sm:w-40" />
-          <p className="font-serif italic text-[10px] sm:text-xs text-(--pearl)/70 mt-1 sm:mt-2">
+          <p className="font-serif italic text-[12px] sm:text-[14px] text-(--pearl)/70 mt-1 sm:mt-2">
             Manaus · Amazonas
           </p>
         </div>
