@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, useRef } from "react";
 import { PageFlip } from "page-flip";
-import { m as monogram } from "./index-X7yIfzPu.js";
+import { m as monogram } from "./index-BQ8nOgKy.js";
 import emailjs from "@emailjs/browser";
 function Cover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden", children: [
@@ -288,6 +288,7 @@ const EMAILJS_CONFIG = {
 };
 function PageRSVP() {
   const [name, setName] = useState("");
+  const [companionName, setCompanionName] = useState("");
   const [message, setMessage] = useState("");
   const [answer, setAnswer] = useState("");
   const [sent, setSent] = useState(false);
@@ -306,7 +307,7 @@ function PageRSVP() {
       return;
     }
     if (!isConfigured) {
-      const body = `Nome: ${encodeURIComponent(name.trim())}%0D%0AResposta: ${encodeURIComponent(answer === "sim" ? "SIM" : "NÃO")}%0D%0AMensagem: ${encodeURIComponent(message.trim() || "—")}`;
+      const body = `Nome: ${encodeURIComponent(name.trim())}%0D%0AAcompanhante: ${encodeURIComponent(companionName.trim() || "Nenhum")}%0D%0AResposta: ${encodeURIComponent(answer === "sim" ? "SIM" : "NÃO")}%0D%0AMensagem: ${encodeURIComponent(message.trim() || "—")}`;
       window.location.href = `mailto:alleaneerafael@gmail.com?subject=${encodeURIComponent("Save The Date - Resposta de Convidado")}&body=${body}`;
       setSent(true);
       return;
@@ -318,6 +319,7 @@ function PageRSVP() {
         EMAILJS_CONFIG.TEMPLATE_ID,
         {
           from_name: name.trim(),
+          companion_name: companionName.trim() || "Nenhum",
           response: answer === "sim" ? "SIM" : "NÃO",
           message: message.trim() || "—",
           to_email: "alleaneerafael@gmail.com",
@@ -378,6 +380,20 @@ function PageRSVP() {
                 className: "bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[15px] sm:text-[17px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50",
                 placeholder: "Seu nome completo",
                 autoComplete: "name"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-0.5 sm:gap-1", children: [
+            /* @__PURE__ */ jsx("label", { className: "font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left", children: "Nome do acompanhante (Opcional)" }),
+            /* @__PURE__ */ jsx(
+              "input",
+              {
+                type: "text",
+                value: companionName,
+                onChange: (e) => setCompanionName(e.target.value),
+                className: "bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[15px] sm:text-[17px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50",
+                placeholder: "Nome do acompanhante",
+                autoComplete: "off"
               }
             )
           ] }),
