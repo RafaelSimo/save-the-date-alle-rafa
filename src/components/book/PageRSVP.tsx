@@ -1,8 +1,7 @@
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { PageFrame } from "./PageFrame";
-import { EMAILJS_CONFIG } from "@/lib/emailjs-config";
 import monogram from "@/assets/ar-monogram-transparent.png";
+import { submitRSVP } from "@/lib/api/rsvp.functions";
 
 export function PageRSVP() {
   const [name, setName] = useState("");
@@ -12,14 +11,6 @@ export function PageRSVP() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-
-  const isConfigured =
-    EMAILJS_CONFIG.SERVICE_ID &&
-    EMAILJS_CONFIG.TEMPLATE_ID &&
-    EMAILJS_CONFIG.PUBLIC_KEY &&
-    !EMAILJS_CONFIG.SERVICE_ID.includes("YOUR_") &&
-    !EMAILJS_CONFIG.TEMPLATE_ID.includes("YOUR_") &&
-    !EMAILJS_CONFIG.PUBLIC_KEY.includes("YOUR_");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,31 +24,19 @@ export function PageRSVP() {
       return;
     }
 
-    if (!isConfigured) {
-      const body = `Nome: ${encodeURIComponent(name.trim())}%0D%0AAcompanhante: ${encodeURIComponent(companionName.trim() || "Nenhum")}%0D%0AResposta: ${encodeURIComponent(answer === "sim" ? "SIM" : "NÃO")}%0D%0AMensagem: ${encodeURIComponent(message.trim() || "—")}`;
-      window.location.href = `mailto:alleaneerafael@gmail.com?subject=${encodeURIComponent("Save The Date - Resposta de Convidado")}&body=${body}`;
-      setSent(true);
-      return;
-    }
-
     setSending(true);
     try {
-      await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
-        {
-          from_name: name.trim(),
-          companion_name: companionName.trim() || "Nenhum",
-          response: answer === "sim" ? "SIM" : "NÃO",
-          message: message.trim() || "—",
-          to_email: "alleaneerafael@gmail.com",
-          subject: "Save The Date - Resposta de Convidado",
+      await submitRSVP({
+        data: {
+          name: name.trim(),
+          companionName: companionName.trim() || undefined,
+          answer: answer as "sim" | "nao",
+          message: message.trim() || undefined,
         },
-        { publicKey: EMAILJS_CONFIG.PUBLIC_KEY },
-      );
+      });
       setSent(true);
     } catch (err) {
-      console.error("EmailJS error:", err);
+      console.error("Error submitting RSVP:", err);
       setError("Não foi possível enviar. Tente novamente em instantes.");
     } finally {
       setSending(false);
@@ -200,11 +179,7 @@ export function PageRSVP() {
               {sending ? "Enviando..." : "Enviar resposta"}
             </button>
 
-            {!isConfigured && !sent && (
-              <p className="text-[11px] sm:text-[13px] text-(--gold-deep) font-serif italic text-center leading-snug">
-                O envio abrirá seu app de e-mail com a resposta preenchida.
-              </p>
-            )}
+
           </form>
         </div>
       )}
