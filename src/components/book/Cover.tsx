@@ -1,7 +1,13 @@
+import monogram from "@/assets/ar-monogram-transparent.png";
+
 export function Cover() {
   return (
     <div className="cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden">
-      <div className="flex w-full max-w-[92%] flex-col items-center justify-center gap-3.5 sm:gap-6">
+      {/* Moldura dupla dourada */}
+      <div className="absolute inset-2.5 sm:inset-4.5 border border-(--gold)/20 pointer-events-none" />
+      <div className="absolute inset-3.5 sm:inset-6 border border-(--gold)/10 pointer-events-none" />
+
+      <div className="flex w-full max-w-[92%] flex-col items-center justify-center gap-5 sm:gap-8 z-10">
         <div className="flex flex-col items-center gap-1.5 sm:gap-3 fade-up">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
           <p className="font-serif tracking-[0.6em] text-[12px] sm:text-[14px] text-(--gold-soft) uppercase">
@@ -51,14 +57,21 @@ export function Cover() {
           <p className="font-serif italic text-[12px] sm:text-[14px] text-(--pearl)/70 mt-1 sm:mt-2">
             Manaus · Amazonas
           </p>
+
+          {/* Monograma de ouro no rodapé */}
+          <img
+            src={monogram}
+            alt="Alleane & Rafael"
+            className="w-12 sm:w-16 h-12 sm:h-16 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] mt-4 sm:mt-6 opacity-80"
+          />
         </div>
       </div>
 
-      {/* corner ornaments - hidden on mobile */}
-      <div className="hidden sm:block absolute top-4 sm:top-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-l border-(--gold)/70" />
-      <div className="hidden sm:block absolute top-4 sm:top-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-t border-r border-(--gold)/70" />
-      <div className="hidden sm:block absolute bottom-4 sm:bottom-6 left-4 sm:left-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-l border-(--gold)/70" />
-      <div className="hidden sm:block absolute bottom-4 sm:bottom-6 right-4 sm:right-6 w-8 sm:w-10 h-8 sm:h-10 border-b border-r border-(--gold)/70" />
+      {/* cantoneiras douradas - exibidas no celular e desktop */}
+      <div className="absolute top-2.5 sm:top-4.5 left-2.5 sm:left-4.5 w-6 sm:w-10 h-6 sm:h-10 border-t border-l border-(--gold)/60 pointer-events-none" />
+      <div className="absolute top-2.5 sm:top-4.5 right-2.5 sm:right-4.5 w-6 sm:w-10 h-6 sm:h-10 border-t border-r border-(--gold)/60 pointer-events-none" />
+      <div className="absolute bottom-2.5 sm:bottom-4.5 left-2.5 sm:left-4.5 w-6 sm:w-10 h-6 sm:h-10 border-b border-l border-(--gold)/60 pointer-events-none" />
+      <div className="absolute bottom-2.5 sm:bottom-4.5 right-2.5 sm:right-4.5 w-6 sm:w-10 h-6 sm:h-10 border-b border-r border-(--gold)/60 pointer-events-none" />
     </div>
   );
 }
