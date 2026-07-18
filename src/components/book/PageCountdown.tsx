@@ -32,11 +32,11 @@ export function PageCountdown() {
         <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-[var(--gold)]" />
         <span className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-[var(--gold)]" />
         <span className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-[var(--gold)]" />
-        <div className="font-numeric text-[24px] sm:text-[34px] leading-none text-[var(--emerald)] tabular-nums">
+        <div className="font-numeric text-[26px] sm:text-[38px] leading-none text-[var(--emerald)] tabular-nums">
           {String(v).padStart(2, "0")}
         </div>
       </div>
-      <div className="font-serif tracking-[0.3em] text-[7px] sm:text-[9px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2">
+      <div className="font-serif tracking-[0.3em] text-[9px] sm:text-[11px] uppercase text-[var(--gold-deep)] mt-1.5 sm:mt-2">
         {label}
       </div>
     </div>
@@ -45,10 +45,10 @@ export function PageCountdown() {
   return (
     <PageFrame pageNumber="III">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up">
-        <p className="font-serif tracking-[0.4em] text-[8px] sm:text-[10px] uppercase text-[var(--gold-deep)]">
+        <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
           Contagem Regressiva
         </p>
-        <h2 className="font-display text-[20px] sm:text-[26px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] shimmer">
+        <h2 className="font-display text-[22px] sm:text-[30px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] shimmer">
           Até o Grande Dia
         </h2>
         <div className="gold-line w-20 sm:w-24" />
@@ -61,7 +61,7 @@ export function PageCountdown() {
         </div>
 
         <div className="gold-line w-20 sm:w-24 mt-2 sm:mt-4" />
-        <p className="font-serif italic text-[var(--ink)] text-[13px] sm:text-[15px] tracking-wide">
+        <p className="font-serif italic text-[var(--ink)] text-[15px] sm:text-[18px] tracking-wide">
           21 de Novembro de 2026
         </p>
       </div>

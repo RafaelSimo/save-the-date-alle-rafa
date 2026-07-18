@@ -4,14 +4,14 @@ export function PageReserve() {
   return (
     <PageFrame pageNumber="I">
       <div className="flex flex-col items-center justify-center h-full gap-4 sm:gap-6 fade-up">
-        <p className="font-serif tracking-[0.4em] text-[8px] sm:text-[10px] uppercase text-[var(--gold-deep)]">
+        <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
           Capítulo Um
         </p>
-        <h2 className="font-display text-[20px] sm:text-[28px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
+        <h2 className="font-display text-[22px] sm:text-[32px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
           Reserve Esta Data
         </h2>
         <div className="gold-line w-20 sm:w-24" />
-        <p className="font-serif text-[13px] sm:text-[15px] leading-relaxed text-[var(--ink)] max-w-[280px]">
+        <p className="font-serif text-[15px] sm:text-[18px] leading-relaxed text-[var(--ink)] max-w-[300px]">
           Estamos preparando um dos dias mais importantes de nossas vidas.
           <br />
           <br />

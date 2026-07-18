@@ -5,10 +5,10 @@ export function PageProposal() {
   return (
     <PageFrame pageNumber="V">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up">
-        <p className="font-serif tracking-[0.4em] text-[8px] sm:text-[10px] uppercase text-[var(--gold-deep)]">
+        <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
           O Pedido
         </p>
-        <h2 className="font-display text-[20px] sm:text-[26px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
+        <h2 className="font-display text-[22px] sm:text-[30px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
           Um Momento Inesquecível
         </h2>
         <div className="gold-line w-20 sm:w-24" />
@@ -26,7 +26,7 @@ export function PageProposal() {
             />
           </div>
         </div>
-        <p className="font-serif text-[13px] sm:text-[15px] leading-relaxed text-[var(--ink)] max-w-[280px] italic">
+        <p className="font-serif text-[15px] sm:text-[18px] leading-relaxed text-[var(--ink)] max-w-[300px] italic">
           No cenário deslumbrante da Serra de Tepequém,
           <br />
           um novo capítulo começou.

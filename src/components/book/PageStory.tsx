@@ -4,10 +4,10 @@ export function PageStory() {
   return (
     <PageFrame pageNumber="IV">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up">
-        <p className="font-serif tracking-[0.4em] text-[8px] sm:text-[10px] uppercase text-[var(--gold-deep)]">
+        <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
           Capítulo Dois
         </p>
-        <h2 className="font-display text-[18px] sm:text-[24px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] max-w-[280px]">
+        <h2 className="font-display text-[20px] sm:text-[28px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] max-w-[300px]">
           Nossa História Está Apenas Começando
         </h2>
         <div className="gold-line w-20 sm:w-24" />
@@ -25,7 +25,7 @@ export function PageStory() {
           />
           <circle cx="40" cy="22" r="2" fill="currentColor" />
         </svg>
-        <p className="font-serif text-[13px] sm:text-[15px] leading-relaxed text-[var(--ink)] max-w-[280px] italic">
+        <p className="font-serif text-[15px] sm:text-[18px] leading-relaxed text-[var(--ink)] max-w-[300px] italic">
           Desde 2020 construímos memórias, sonhos e momentos que nos trouxeram
           até aqui.
           <br />

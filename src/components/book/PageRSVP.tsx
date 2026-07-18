@@ -48,12 +48,12 @@ export function PageRSVP() {
       {sent ? (
         <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up text-center px-2 sm:px-4">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
-          <h2 className="font-script text-4xl sm:text-5xl md:text-6xl leading-tight text-(--emerald) max-w-75 shimmer">
+          <h2 className="font-script text-5xl sm:text-6xl md:text-7xl leading-tight text-(--emerald) max-w-75 shimmer">
             {answer === "sim" ? "Obrigado!" : "Obrigado"}
           </h2>
           <div className="gold-line w-20 sm:w-24" />
           {answer === "sim" ? (
-            <p className="font-serif italic text-(--ink) text-[16px] sm:text-[19px] max-w-75 leading-relaxed">
+            <p className="font-serif italic text-(--ink) text-[18px] sm:text-[21px] max-w-75 leading-relaxed">
               Ficamos muito felizes com sua confirmação!
               <br />
               <br />
@@ -61,7 +61,7 @@ export function PageRSVP() {
               deste momento tão especial.
             </p>
           ) : (
-            <p className="font-serif italic text-(--ink) text-[16px] sm:text-[19px] max-w-75 leading-relaxed">
+            <p className="font-serif italic text-(--ink) text-[18px] sm:text-[21px] max-w-75 leading-relaxed">
               Sentiremos sua falta, mas agradecemos muito por nos avisar.
               <br />
               <br />
@@ -79,15 +79,15 @@ export function PageRSVP() {
         </div>
       ) : (
         <div className="flex flex-col items-center w-full gap-1.5 sm:gap-2.5 fade-up">
-          <p className="font-serif tracking-[0.35em] text-[10px] sm:text-[12px] uppercase text-(--gold-deep)">
+          <p className="font-serif tracking-[0.35em] text-[12px] sm:text-[14px] uppercase text-(--gold-deep)">
             Confirme
           </p>
-          <h2 className="font-display text-[17px] sm:text-[19px] tracking-[0.06em] leading-snug text-(--emerald) max-w-70 text-center uppercase">
+          <h2 className="font-display text-[19px] sm:text-[22px] tracking-[0.06em] leading-snug text-(--emerald) max-w-70 text-center uppercase">
             Receba o Convite Oficial
           </h2>
           <div className="gold-line w-12 sm:w-16" />
 
-          <p className="font-serif italic text-center text-(--ink) text-[13px] sm:text-[15px] leading-snug max-w-70">
+          <p className="font-serif italic text-center text-(--ink) text-[15px] sm:text-[17px] leading-snug max-w-70">
             Gostaríamos de saber se você deseja receber nosso convite oficial.
           </p>
 
@@ -96,47 +96,47 @@ export function PageRSVP() {
             className="w-full flex flex-col gap-2.5 sm:gap-3 mt-1 sm:mt-2"
           >
             <div className="flex flex-col gap-0.5 sm:gap-1">
-              <label className="font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
+              <label className="font-serif text-[11px] sm:text-[13px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
                 Nome completo *
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[15px] sm:text-[17px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
+                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[16px] sm:text-[18px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Seu nome completo"
                 autoComplete="name"
               />
             </div>
 
             <div className="flex flex-col gap-0.5 sm:gap-1">
-              <label className="font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
+              <label className="font-serif text-[11px] sm:text-[13px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
                 Nome do acompanhante (Opcional)
               </label>
               <input
                 type="text"
                 value={companionName}
                 onChange={(e) => setCompanionName(e.target.value)}
-                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[15px] sm:text-[17px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
+                className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[16px] sm:text-[18px] py-1 sm:py-1.5 transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Nome do acompanhante"
                 autoComplete="off"
               />
             </div>
 
             <div className="flex flex-col gap-0.5 sm:gap-1">
-              <label className="font-serif text-[10px] sm:text-[12px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
+              <label className="font-serif text-[11px] sm:text-[13px] tracking-[0.25em] uppercase text-(--gold-deep) text-left">
                 Mensagem aos noivos
               </label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={2}
-                className="bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[14px] sm:text-[16px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-(--ink)/50"
+                className="bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[15px] sm:text-[17px] p-1.5 sm:p-2 resize-none transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Opcional"
               />
             </div>
 
-            <p className="font-serif italic text-center text-(--ink) text-[14px] sm:text-[16px]">
+            <p className="font-serif italic text-center text-(--ink) text-[15px] sm:text-[17px]">
               Deseja receber nosso convite oficial?
             </p>
 

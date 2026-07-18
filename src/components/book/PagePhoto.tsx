@@ -5,7 +5,7 @@ export function PagePhoto() {
   return (
     <PageFrame pageNumber="II">
       <div className="flex flex-col items-center justify-center h-full w-full gap-3 sm:gap-4 fade-up">
-        <p className="font-serif italic text-[var(--gold-deep)] tracking-widest text-[8px] sm:text-[10px] uppercase">
+        <p className="font-serif italic text-[var(--gold-deep)] tracking-widest text-[10px] sm:text-[12px] uppercase">
           Um Retrato
         </p>
         <div className="relative w-full max-w-[260px] aspect-[3/4] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]">
@@ -20,7 +20,7 @@ export function PagePhoto() {
             />
           </div>
         </div>
-        <p className="font-serif italic text-[var(--ink)] text-[12px] sm:text-sm mt-2 sm:mt-3">
+        <p className="font-serif italic text-[var(--ink)] text-[14px] sm:text-[16px] mt-2 sm:mt-3">
           "Onde duas almas se encontram, começa para sempre."
         </p>
       </div>
