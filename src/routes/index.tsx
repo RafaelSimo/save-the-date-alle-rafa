@@ -151,43 +151,49 @@ function Index() {
             "radial-gradient(ellipse at center, #0f3d23 0%, #081c10 60%, #040906 100%)",
         }}
       >
-        <div className="fade-up flex flex-col items-center gap-5 w-full max-w-sm px-6">
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center">
+        <div className="fade-up flex flex-col items-center w-full max-w-lg px-6">
+          {/* Monograma */}
+          <div className="relative w-60 h-60 sm:w-72 sm:h-72 flex items-center justify-center">
             <img
               src={monogram}
               alt="Alleane & Rafael"
               className="w-full h-full object-contain drop-shadow-[0_0_18px_rgba(212,175,55,0.5)] shimmer"
-              width={224}
-              height={224}
+              width={288}
+              height={288}
             />
           </div>
 
-          <div className="flex flex-col items-center gap-2 text-center">
-            <p className="font-serif tracking-[0.45em] text-[12px] uppercase text-[var(--gold-soft)]">
+          {/* Informações */}
+          <div className="flex flex-col items-center gap-3.5 text-center mt-5 sm:mt-7">
+            <p className="font-serif tracking-[0.45em] text-[16px] sm:text-[18px] uppercase text-[var(--gold-soft)]">
               Save the Date
             </p>
-            <div className="gold-line w-24" />
-            <h1 className="font-display text-[30px] sm:text-[40px] tracking-[0.08em] uppercase leading-tight text-[var(--pearl)] drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]">
+            <div className="gold-line w-32" />
+            <h1 className="font-display text-[40px] sm:text-[54px] tracking-[0.08em] uppercase leading-tight text-[var(--pearl)] drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]">
               Alleane & Rafael
             </h1>
-            <p className="font-serif italic text-[var(--pearl)]/80 text-base sm:text-lg max-w-xs leading-relaxed">
+            <p className="font-serif italic text-[var(--pearl)]/80 text-[20px] sm:text-[22px] max-w-md leading-relaxed">
               Uma nova história está prestes a começar.
             </p>
-            <p className="font-numeric tracking-[0.3em] text-[18px] sm:text-[22px] text-[var(--gold-soft)] mt-2">
+            <p className="font-numeric tracking-[0.3em] text-[22px] sm:text-[26px] text-[var(--gold-soft)] mt-2.5">
               21 · 11 · 2026
             </p>
           </div>
+
+          {/* Botão */}
+          <div
+            className={`mt-12 sm:mt-14 transition-all duration-1000 ${
+              showBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            }`}
+          >
+            <button className="btn-luxury text-[16px] sm:text-[18px] px-10 py-3.5" onClick={openBook}>
+              Abrir Livro
+            </button>
+          </div>
         </div>
 
-        <div
-          className={`mt-10 transition-all duration-1000 ${
-            showBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-          }`}
-        >
-          <button className="btn-luxury" onClick={openBook}>
-            Abrir Livro
-          </button>
-        </div>
+        {/* Espaçador na base para empurrar o conteúdo para cima */}
+        <div className="h-32 sm:h-44" />
       </section>
 
       {/* OPENING SHEEN */}
