@@ -49,14 +49,14 @@ function Particles({ count = 18 }: { count?: number }) {
     );
   }, [count]);
   return (
-    <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
+    <div className="pointer-events-none fixed inset-0 overflow-hidden z-25">
       {particles.map((p) => (
         <span
           key={p.id}
           className="particle"
           style={{
             left: `${p.left}%`,
-            bottom: "-10px",
+            top: "-10px",
             width: `${p.size}px`,
             height: `${p.size}px`,
             animationDelay: `${p.delay}s`,
@@ -93,7 +93,7 @@ function Leaves({ count = 6 }: { count?: number }) {
     );
   }, [count]);
   return (
-    <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
+    <div className="pointer-events-none fixed inset-0 overflow-hidden z-25">
       {leaves.map((l) => (
         <svg
           key={l.id}
@@ -139,7 +139,7 @@ function Index() {
   return (
     <main className="fixed inset-0 w-screen h-screen overflow-hidden">
       {stage !== "book" && <Particles />}
-      {stage !== "book" && <Leaves />}
+      {stage === "opening" && <Leaves />}
 
       {/* INTRO */}
       <section
