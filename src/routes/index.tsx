@@ -148,7 +148,7 @@ function Index() {
         }`}
         style={{
           background:
-            "radial-gradient(ellipse at center, #0a1f12 0%, #050505 70%)",
+            "radial-gradient(ellipse at center, #0f3d23 0%, #081c10 60%, #040906 100%)",
         }}
       >
         <div className="fade-up flex flex-col items-center gap-5 w-full max-w-sm px-6">
