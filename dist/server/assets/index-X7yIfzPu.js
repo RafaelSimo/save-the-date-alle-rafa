@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, Suspense, lazy } from "react";
 const monogram = "/assets/ar-monogram-transparent-x9-flqyx.png";
-const FlipBook = lazy(() => import("./FlipBook-C_ZEk_Yr.js").then((m) => ({
+const FlipBook = lazy(() => import("./FlipBook-DuENb9QU.js").then((m) => ({
   default: m.FlipBook
 })));
 function Particles({

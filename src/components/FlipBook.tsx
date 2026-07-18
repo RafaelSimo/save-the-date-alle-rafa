@@ -73,8 +73,9 @@ export function FlipBook() {
   const stageRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const flipRef = useRef<any>(null);
-  const [pageIndex, setPageIndex] = useState(0);
+  const [overlayActive, setOverlayActive] = useState(false);
   const pageIndexRef = useRef(0);
+  const pageNumberRef = useRef<HTMLSpanElement>(null);
   const [bookSize, setBookSize] = useState(() => getBookSize());
   const [overlayRect, setOverlayRect] = useState<{
     top: number;
@@ -82,6 +83,20 @@ export function FlipBook() {
     width: number;
     height: number;
   } | null>(null);
+
+  // FIX #1: o overlay não pode ficar visível enquanto uma página está
+  // fisicamente girando (senão fica "flutuando" sobre a animação real,
+  // causando a sensação de conteúdo duplicado/sobreposto/piscando).
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  // FIX #9 (travamento): guardamos o estado "está flipando" e "overlay
+  // visível" em refs (não causam re-render sozinhos). Só chamamos
+  // setState nos dois momentos em que isso REALMENTE precisa mudar a
+  // tela — entrando ou saindo da página do RSVP. Qualquer outro flip
+  // (ex: capa -> página 2) não deve disparar NENHUM re-render do React,
+  // para não competir com a animação 3D controlada pela lib no thread
+  // principal, especialmente em celulares mais fracos.
+  const overlayVisibleRef = useRef(false);
 
   const measureOverlay = () => {
     if (!containerRef.current || !stageRef.current) return;
@@ -102,6 +117,8 @@ export function FlipBook() {
     let destroyed = false;
     let lastBookWidth = 0;
     let lastBookHeight = 0;
+    // FIX #2: nunca recriar o livro no meio de uma virada de página.
+    let flippingNow = false;
 
     const destroyBook = () => {
       if (flipRef.current) {
@@ -120,17 +137,26 @@ export function FlipBook() {
 
     const initializeBook = () => {
       if (!containerRef.current || destroyed) return;
-      
+      if (flippingNow) return; // FIX #2: aborta se estiver no meio de um flip
+
       const { width, height } = getBookSize();
       if (width === lastBookWidth && height === lastBookHeight && flipRef.current) {
         return;
       }
-      
+
       lastBookWidth = width;
       lastBookHeight = height;
-      
+
       destroyBook();
+
+      // FIX #3: aplica o tamanho no DOM de forma SÍNCRONA antes de criar o
+      // PageFlip, em vez de depender do setState assíncrono do React.
+      // Isso garante que a lib meça o container já no tamanho correto.
+      containerRef.current.style.width = `${width}px`;
+      containerRef.current.style.height = `${height}px`;
       setBookSize({ width, height });
+
+      const isMobile = window.innerWidth < 640;
 
       const pf = new PageFlip(containerRef.current, {
         width,
@@ -140,12 +166,12 @@ export function FlipBook() {
         maxWidth: 700,
         minHeight: height,
         maxHeight: 1100,
-        maxShadowOpacity: 0.6,
+        maxShadowOpacity: isMobile ? 0 : 0.6,
         showCover: true,
         mobileScrollSupport: true,
         usePortrait: true,
-        drawShadow: true,
-        flippingTime: 600,
+        drawShadow: !isMobile, // Desativa cálculo de sombra 3D no mobile para melhor performance GPU
+        flippingTime: isMobile ? 500 : 600, // Animação ligeiramente mais rápida no mobile
         swipeDistance: 30,
         clickEventForward: true,
         useMouseEvents: true,
@@ -154,11 +180,47 @@ export function FlipBook() {
       });
 
       flipRef.current = pf;
+
+      // Atualiza o número da página no DOM de forma síncrona inicial
+      if (pageNumberRef.current) {
+        pageNumberRef.current.innerText = `${String(pageIndexRef.current + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+      }
+
+      // FIX #1 + FIX #9: esconde o overlay assim que o gesto de virar
+      // começa — mas SÓ dispara setState (re-render) quando isso
+      // realmente afeta a tela. Flips que não envolvem a página do
+      // RSVP não tocam em nenhum state do React.
+      pf.on("changeState", (e: { data: string }) => {
+        const flippingStates = e.data === "flipping" || e.data === "user_fold";
+        flippingNow = flippingStates;
+
+        if (flippingStates && overlayVisibleRef.current) {
+          // O overlay estava visível e um flip para longe do RSVP
+          // acabou de começar: precisa sumir imediatamente.
+          overlayVisibleRef.current = false;
+          setIsFlipping(true);
+          setOverlayActive(false);
+        }
+
+        if (e.data === "read") {
+          // Livro parado. Se o flip terminou na página do RSVP,
+          // mostramos o overlay agora (medição já com o layout final).
+          if (pageIndexRef.current === RSVP_INDEX) {
+            overlayVisibleRef.current = true;
+            setIsFlipping(false);
+            setOverlayActive(true);
+            requestAnimationFrame(measureOverlay);
+          }
+        }
+      });
+
       pf.on("flip", (e: { data: number }) => {
         const index = Number(e.data);
-        setPageIndex(index);
         pageIndexRef.current = index;
-        requestAnimationFrame(measureOverlay);
+        // Evita re-render geral do React e atualiza o número da página diretamente no DOM
+        if (pageNumberRef.current) {
+          pageNumberRef.current.innerText = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+        }
       });
 
       rafId = requestAnimationFrame(() => {
@@ -169,6 +231,14 @@ export function FlipBook() {
             pf.loadFromHTML(pageEls);
             if (pageIndexRef.current > 0) {
               pf.turnToPage(pageIndexRef.current);
+              // FIX #9 (caso de borda): turnToPage pode não disparar
+              // changeState "read", então garantimos aqui que o
+              // overlay volte a aparecer se o pulo caiu na página do RSVP.
+              if (pageIndexRef.current === RSVP_INDEX) {
+                overlayVisibleRef.current = true;
+                setIsFlipping(false);
+                setOverlayActive(true);
+              }
             }
           }
           requestAnimationFrame(measureOverlay);
@@ -180,23 +250,42 @@ export function FlipBook() {
 
     initializeBook();
 
+    // FIX #9 (secundário): logo após o carregamento, fontes e imagens
+    // ainda podem estar assentando e disparar um "resize" espúrio do
+    // navegador (reflow de layout). Se isso coincidir com o primeiro
+    // toque do usuário, o livro seria destruído/recriado bem no meio do
+    // primeiro gesto de flip, causando o engasgo. Damos uma pequena
+    // janela de proteção logo após montar o componente.
+    const mountedAt = Date.now();
+    const STARTUP_GRACE_MS = 1200;
+
     let lastWidth = window.innerWidth;
-    let lastHeight = window.innerHeight;
+    // FIX #6: usa visualViewport.height quando disponível — é mais
+    // confiável no mobile que window.innerHeight (que às vezes inclui
+    // a barra de endereço do navegador).
+    let lastHeight = window.visualViewport?.height ?? window.innerHeight;
     let resizeTimeout: number | undefined;
-    
+
     const handleResize = () => {
       const currentWidth = window.innerWidth;
-      const currentHeight = window.innerHeight;
-      
+      const currentHeight = window.visualViewport?.height ?? window.innerHeight;
+
       const widthChanged = currentWidth !== lastWidth;
       const heightChanged = Math.abs(currentHeight - lastHeight) > 80;
 
       if (widthChanged || heightChanged) {
         lastWidth = currentWidth;
         lastHeight = currentHeight;
-        
+
         if (resizeTimeout) window.clearTimeout(resizeTimeout);
         resizeTimeout = window.setTimeout(() => {
+          // FIX #2: não recria se estiver no meio de um flip.
+          // FIX #9: não recria dentro da janela de proteção inicial,
+          // a menos que a mudança de largura seja real (rotação de
+          // tela), que sempre deve ser respeitada.
+          const withinGracePeriod = Date.now() - mountedAt < STARTUP_GRACE_MS;
+          if (flippingNow) return;
+          if (withinGracePeriod && !widthChanged) return;
           initializeBook();
         }, 300);
       }
@@ -215,7 +304,7 @@ export function FlipBook() {
   }, []);
 
   const total = pages.length;
-  const showOverlay = pageIndex === RSVP_INDEX;
+  const showOverlay = overlayActive;
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-between py-1">
@@ -262,9 +351,11 @@ export function FlipBook() {
         >
           ‹
         </button>
-        <span className="font-serif text-xs tracking-[0.3em] text-[var(--gold)]/80">
-          {String(pageIndex + 1).padStart(2, "0")} /{" "}
-          {String(total).padStart(2, "0")}
+        <span
+          ref={pageNumberRef}
+          className="font-serif text-xs tracking-[0.3em] text-[var(--gold)]/80"
+        >
+          {String(pageIndexRef.current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
         <button
           aria-label="Próxima página"

@@ -8,9 +8,7 @@ export function PagePhoto() {
         <p className="font-serif italic text-[var(--gold-deep)] tracking-widest text-[8px] sm:text-[10px] uppercase">
           Um Retrato
         </p>
-        <div
-          className="relative w-full max-w-[260px] aspect-[3/4] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]"
-        >
+        <div className="relative w-full max-w-[260px] aspect-[3/4] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]">
           <div className="w-full h-full border border-[var(--gold)] overflow-hidden relative">
             <img
               src={couplePhoto}
@@ -19,13 +17,6 @@ export function PagePhoto() {
               width={768}
               height={1024}
               className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(15,93,58,0.05) 0%, rgba(15,93,58,0.25) 100%)",
-              }}
             />
           </div>
         </div>

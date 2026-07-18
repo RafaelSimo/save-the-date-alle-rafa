@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect, useRef } from "react";
 import { PageFlip } from "page-flip";
-import { m as monogram } from "./index-E7uSkU6A.js";
+import { m as monogram } from "./index-X7yIfzPu.js";
 import emailjs from "@emailjs/browser";
 function Cover() {
   return /* @__PURE__ */ jsxs("div", { className: "cover relative w-full h-full flex items-center justify-center px-3 sm:px-6 py-4 sm:py-8 text-center overflow-hidden", children: [
@@ -100,38 +100,21 @@ function PageReserve() {
     ] })
   ] }) });
 }
-const couplePhoto = "/assets/couple-placeholder-CVvAoKLv.jpg";
+const couplePhoto = "/assets/couple-placeholder-BlCoNU_2.jpg";
 function PagePhoto() {
   return /* @__PURE__ */ jsx(PageFrame, { pageNumber: "II", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center justify-center h-full w-full gap-3 sm:gap-4 fade-up", children: [
     /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[var(--gold-deep)] tracking-widest text-[8px] sm:text-[10px] uppercase", children: "Um Retrato" }),
-    /* @__PURE__ */ jsx(
-      "div",
+    /* @__PURE__ */ jsx("div", { className: "relative w-full max-w-[260px] aspect-[3/4] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]", children: /* @__PURE__ */ jsx("div", { className: "w-full h-full border border-[var(--gold)] overflow-hidden relative", children: /* @__PURE__ */ jsx(
+      "img",
       {
-        className: "relative w-full max-w-[260px] aspect-[3/4] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)]",
-        children: /* @__PURE__ */ jsxs("div", { className: "w-full h-full border border-[var(--gold)] overflow-hidden relative", children: [
-          /* @__PURE__ */ jsx(
-            "img",
-            {
-              src: couplePhoto,
-              alt: "Alleane e Rafael",
-              loading: "lazy",
-              width: 768,
-              height: 1024,
-              className: "absolute inset-0 w-full h-full object-cover"
-            }
-          ),
-          /* @__PURE__ */ jsx(
-            "div",
-            {
-              className: "absolute inset-0 pointer-events-none",
-              style: {
-                background: "linear-gradient(180deg, rgba(15,93,58,0.05) 0%, rgba(15,93,58,0.25) 100%)"
-              }
-            }
-          )
-        ] })
+        src: couplePhoto,
+        alt: "Alleane e Rafael",
+        loading: "lazy",
+        width: 768,
+        height: 1024,
+        className: "absolute inset-0 w-full h-full object-cover"
       }
-    ),
+    ) }) }),
     /* @__PURE__ */ jsx("p", { className: "font-serif italic text-[var(--ink)] text-[12px] sm:text-sm mt-2 sm:mt-3", children: '"Onde duas almas se encontram, começa para sempre."' })
   ] }) });
 }
@@ -503,10 +486,13 @@ function FlipBook() {
   const containerRef = useRef(null);
   const stageRef = useRef(null);
   const flipRef = useRef(null);
-  const [pageIndex, setPageIndex] = useState(0);
+  const [overlayActive, setOverlayActive] = useState(false);
   const pageIndexRef = useRef(0);
+  const pageNumberRef = useRef(null);
   const [bookSize, setBookSize] = useState(() => getBookSize());
   const [overlayRect, setOverlayRect] = useState(null);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const overlayVisibleRef = useRef(false);
   const measureOverlay = () => {
     if (!containerRef.current || !stageRef.current) return;
     const bookRect = containerRef.current.getBoundingClientRect();
@@ -524,6 +510,7 @@ function FlipBook() {
     let destroyed = false;
     let lastBookWidth = 0;
     let lastBookHeight = 0;
+    let flippingNow = false;
     const destroyBook = () => {
       if (flipRef.current) {
         try {
@@ -539,6 +526,7 @@ function FlipBook() {
     };
     const initializeBook = () => {
       if (!containerRef.current || destroyed) return;
+      if (flippingNow) return;
       const { width, height } = getBookSize();
       if (width === lastBookWidth && height === lastBookHeight && flipRef.current) {
         return;
@@ -546,7 +534,10 @@ function FlipBook() {
       lastBookWidth = width;
       lastBookHeight = height;
       destroyBook();
+      containerRef.current.style.width = `${width}px`;
+      containerRef.current.style.height = `${height}px`;
       setBookSize({ width, height });
+      const isMobile = window.innerWidth < 640;
       const pf = new PageFlip(containerRef.current, {
         width,
         height,
@@ -555,12 +546,14 @@ function FlipBook() {
         maxWidth: 700,
         minHeight: height,
         maxHeight: 1100,
-        maxShadowOpacity: 0.6,
+        maxShadowOpacity: isMobile ? 0 : 0.6,
         showCover: true,
         mobileScrollSupport: true,
         usePortrait: true,
-        drawShadow: true,
-        flippingTime: 600,
+        drawShadow: !isMobile,
+        // Desativa cálculo de sombra 3D no mobile para melhor performance GPU
+        flippingTime: isMobile ? 500 : 600,
+        // Animação ligeiramente mais rápida no mobile
         swipeDistance: 30,
         clickEventForward: true,
         useMouseEvents: true,
@@ -568,11 +561,32 @@ function FlipBook() {
         showPageCorners: true
       });
       flipRef.current = pf;
+      if (pageNumberRef.current) {
+        pageNumberRef.current.innerText = `${String(pageIndexRef.current + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+      }
+      pf.on("changeState", (e) => {
+        const flippingStates = e.data === "flipping" || e.data === "user_fold";
+        flippingNow = flippingStates;
+        if (flippingStates && overlayVisibleRef.current) {
+          overlayVisibleRef.current = false;
+          setIsFlipping(true);
+          setOverlayActive(false);
+        }
+        if (e.data === "read") {
+          if (pageIndexRef.current === RSVP_INDEX) {
+            overlayVisibleRef.current = true;
+            setIsFlipping(false);
+            setOverlayActive(true);
+            requestAnimationFrame(measureOverlay);
+          }
+        }
+      });
       pf.on("flip", (e) => {
         const index = Number(e.data);
-        setPageIndex(index);
         pageIndexRef.current = index;
-        requestAnimationFrame(measureOverlay);
+        if (pageNumberRef.current) {
+          pageNumberRef.current.innerText = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+        }
       });
       rafId = requestAnimationFrame(() => {
         if (!containerRef.current || destroyed) return;
@@ -582,6 +596,11 @@ function FlipBook() {
             pf.loadFromHTML(pageEls);
             if (pageIndexRef.current > 0) {
               pf.turnToPage(pageIndexRef.current);
+              if (pageIndexRef.current === RSVP_INDEX) {
+                overlayVisibleRef.current = true;
+                setIsFlipping(false);
+                setOverlayActive(true);
+              }
             }
           }
           requestAnimationFrame(measureOverlay);
@@ -591,12 +610,14 @@ function FlipBook() {
       });
     };
     initializeBook();
+    const mountedAt = Date.now();
+    const STARTUP_GRACE_MS = 1200;
     let lastWidth = window.innerWidth;
-    let lastHeight = window.innerHeight;
+    let lastHeight = window.visualViewport?.height ?? window.innerHeight;
     let resizeTimeout;
     const handleResize = () => {
       const currentWidth = window.innerWidth;
-      const currentHeight = window.innerHeight;
+      const currentHeight = window.visualViewport?.height ?? window.innerHeight;
       const widthChanged = currentWidth !== lastWidth;
       const heightChanged = Math.abs(currentHeight - lastHeight) > 80;
       if (widthChanged || heightChanged) {
@@ -604,6 +625,9 @@ function FlipBook() {
         lastHeight = currentHeight;
         if (resizeTimeout) window.clearTimeout(resizeTimeout);
         resizeTimeout = window.setTimeout(() => {
+          const withinGracePeriod = Date.now() - mountedAt < STARTUP_GRACE_MS;
+          if (flippingNow) return;
+          if (withinGracePeriod && !widthChanged) return;
           initializeBook();
         }, 300);
       }
@@ -619,7 +643,7 @@ function FlipBook() {
     };
   }, []);
   const total = pages.length;
-  const showOverlay = pageIndex === RSVP_INDEX;
+  const showOverlay = overlayActive;
   return /* @__PURE__ */ jsxs("div", { className: "relative w-full h-full flex flex-col items-center justify-between py-1", children: [
     /* @__PURE__ */ jsxs(
       "div",
@@ -671,12 +695,18 @@ function FlipBook() {
           children: "‹"
         }
       ),
-      /* @__PURE__ */ jsxs("span", { className: "font-serif text-xs tracking-[0.3em] text-[var(--gold)]/80", children: [
-        String(pageIndex + 1).padStart(2, "0"),
-        " /",
-        " ",
-        String(total).padStart(2, "0")
-      ] }),
+      /* @__PURE__ */ jsxs(
+        "span",
+        {
+          ref: pageNumberRef,
+          className: "font-serif text-xs tracking-[0.3em] text-[var(--gold)]/80",
+          children: [
+            String(pageIndexRef.current + 1).padStart(2, "0"),
+            " / ",
+            String(total).padStart(2, "0")
+          ]
+        }
+      ),
       /* @__PURE__ */ jsx(
         "button",
         {
