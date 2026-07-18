@@ -15,9 +15,7 @@ export function PageLocation() {
           Amazonas
         </p>
         <div className="gold-line w-20 sm:w-24" />
-        <div
-          className="relative w-full max-w-[290px] aspect-[16/10] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.25)]"
-        >
+        <div className="relative w-full max-w-[320px] aspect-[16/10] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.4)] shadow-[0_12px_24px_-10px_rgba(0,0,0,0.25)]">
           <div className="w-full h-full border border-[var(--gold)] overflow-hidden relative">
             <img
               src={manausLocation}
@@ -30,7 +28,9 @@ export function PageLocation() {
           </div>
         </div>
         <p className="font-serif text-[15px] sm:text-[18px] leading-relaxed text-[var(--ink)] max-w-[300px] italic">
-          Em um lugar cuidadosamente escolhido para celebrar este momento.
+          Em um lugar cuidadosamente escolhido para celebrar este momento. Após
+          a cerimônia, todos estão convidados a se juntar a nós para uma
+          recepção calorosa e memorável.
         </p>
         <div className="flex flex-col items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3">
           <div className="ornament text-sm sm:text-base">— ❦ —</div>
