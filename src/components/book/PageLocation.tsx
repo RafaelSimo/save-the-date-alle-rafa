@@ -1,5 +1,5 @@
 import { PageFrame } from "./PageFrame";
-import manausLocation from "@/assets/manaus-location.jpg";
+import manausLocation from "@/assets/manaus-location.png";
 
 export function PageLocation() {
   return (
@@ -19,7 +19,7 @@ export function PageLocation() {
           <div className="w-full h-full border border-[var(--gold)] overflow-hidden relative">
             <img
               src={manausLocation}
-              alt="Teatro Amazonas"
+              alt="Manaus"
               loading="lazy"
               width={1024}
               height={768}
