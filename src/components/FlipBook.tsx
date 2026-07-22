@@ -305,6 +305,49 @@ export function FlipBook() {
     };
   }, []);
 
+  const [overlayTouchStartX, setOverlayTouchStartX] = useState<number | null>(null);
+
+  const handleFlipPrev = () => {
+    overlayVisibleRef.current = false;
+    setIsFlipping(false);
+    setOverlayActive(false);
+    flipRef.current?.flipPrev();
+  };
+
+  const handleFlipNext = () => {
+    overlayVisibleRef.current = false;
+    setIsFlipping(false);
+    setOverlayActive(false);
+    flipRef.current?.flipNext();
+  };
+
+  const handleOverlayTouchStart = (e: React.TouchEvent) => {
+    const target = e.target as HTMLElement;
+    if (
+      target.tagName === "INPUT" ||
+      target.tagName === "TEXTAREA" ||
+      target.tagName === "BUTTON"
+    ) {
+      return;
+    }
+    setOverlayTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleOverlayTouchEnd = (e: React.TouchEvent) => {
+    if (overlayTouchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = overlayTouchStartX - touchEndX;
+
+    if (Math.abs(diffX) > 35) {
+      if (diffX < 0) {
+        handleFlipPrev();
+      } else {
+        handleFlipNext();
+      }
+    }
+    setOverlayTouchStartX(null);
+  };
+
   const total = pages.length;
   const showOverlay = overlayActive;
 
@@ -340,16 +383,18 @@ export function FlipBook() {
               height: overlayRect.height,
               zIndex: 1000,
             }}
+            onTouchStart={handleOverlayTouchStart}
+            onTouchEnd={handleOverlayTouchEnd}
           >
-            <PageRSVP />
+            <PageRSVP onGoBack={handleFlipPrev} onGoNext={handleFlipNext} />
           </div>
         )}
       </div>
       <div className="pt-2 pb-2 flex items-center gap-3 select-none">
         <button
           aria-label="Página anterior"
-          onClick={() => flipRef.current?.flipPrev()}
-          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100"
+          onClick={handleFlipPrev}
+          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100 cursor-pointer"
         >
           ‹
         </button>
@@ -361,8 +406,8 @@ export function FlipBook() {
         </span>
         <button
           aria-label="Próxima página"
-          onClick={() => flipRef.current?.flipNext()}
-          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100"
+          onClick={handleFlipNext}
+          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100 cursor-pointer"
         >
           ›
         </button>
