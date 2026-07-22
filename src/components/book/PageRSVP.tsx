@@ -3,7 +3,7 @@ import { PageFrame } from "./PageFrame";
 import monogram from "@/assets/ar-monogram-transparent.png";
 import { submitRSVP } from "@/lib/api/rsvp.functions";
 
-export function PageRSVP() {
+export function PageRSVP({ onGoBack }: { onGoBack?: () => void }) {
   const [name, setName] = useState("");
   const [companionName, setCompanionName] = useState("");
   const [message, setMessage] = useState("");
@@ -69,13 +69,22 @@ export function PageRSVP() {
               especial.
             </p>
           )}
-          <div className="mt-3 sm:mt-4 shimmer">
+          <div className="mt-2 sm:mt-4 shimmer">
             <img
               src={monogram}
               alt="Alleane & Rafael"
-              className="w-14 sm:w-16 h-14 sm:h-16 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"
+              className="w-12 sm:w-16 h-12 sm:h-16 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"
             />
           </div>
+          {onGoBack && (
+            <button
+              type="button"
+              onClick={onGoBack}
+              className="sm:hidden font-serif tracking-[0.25em] uppercase text-[12px] py-2 px-4 bg-transparent text-[var(--gold-deep)] border border-[var(--gold)]/40 hover:border-[var(--gold)] hover:bg-[var(--gold)]/10 transition-all min-h-10 cursor-pointer mt-2 flex items-center justify-center gap-1.5"
+            >
+              ‹ Voltar para o Livro
+            </button>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center w-full gap-1.5 sm:gap-2.5 fade-up">
@@ -174,12 +183,20 @@ export function PageRSVP() {
             <button
               type="submit"
               disabled={sending}
-              className="font-serif tracking-[0.3em] uppercase text-[13px] sm:text-[15px] py-2.5 sm:py-3 px-3 sm:px-4 bg-(--emerald) text-(--pearl) border border-(--gold) hover:bg-(--emerald-deep) hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-11 sm:min-h-12"
+              className="font-serif tracking-[0.3em] uppercase text-[13px] sm:text-[15px] py-2.5 sm:py-3 px-3 sm:px-4 bg-(--emerald) text-(--pearl) border border-(--gold) hover:bg-(--emerald-deep) hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all disabled:opacity-60 min-h-11 sm:min-h-12 cursor-pointer"
             >
               {sending ? "Enviando..." : "Enviar resposta"}
             </button>
 
-
+            {onGoBack && (
+              <button
+                type="button"
+                onClick={onGoBack}
+                className="sm:hidden w-full font-serif tracking-[0.25em] uppercase text-[12px] py-2 px-3 bg-transparent text-[var(--gold-deep)] border border-[var(--gold)]/40 hover:border-[var(--gold)] hover:bg-[var(--gold)]/10 transition-all min-h-10 cursor-pointer mt-1 flex items-center justify-center gap-1"
+              >
+                ‹ Voltar para o Livro
+              </button>
+            )}
           </form>
         </div>
       )}

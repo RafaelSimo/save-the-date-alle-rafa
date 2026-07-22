@@ -386,7 +386,7 @@ export function FlipBook() {
             onTouchStart={handleOverlayTouchStart}
             onTouchEnd={handleOverlayTouchEnd}
           >
-            <PageRSVP />
+            <PageRSVP onGoBack={handleFlipPrev} />
           </div>
         )}
       </div>
