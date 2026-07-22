@@ -6,7 +6,7 @@ export function PagePhoto() {
     <PageFrame pageNumber="II">
       <div className="flex flex-col items-center justify-center h-full w-full gap-3 sm:gap-4 fade-up">
         <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
-          Capítulo dois
+          Capítulo Dois
         </p>
         <h2 className="font-display text-[22px] sm:text-[30px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
           PARA QUEM AMAMOS

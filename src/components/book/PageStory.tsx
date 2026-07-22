@@ -5,7 +5,7 @@ export function PageStory() {
     <PageFrame pageNumber="IV">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up">
         <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
-          CAPÍTULO TRÊS
+          Capítulo Três
         </p>
         <h2 className="font-display text-[20px] sm:text-[28px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] max-w-[300px]">
           UM NOVO CAPÍTULO NOS ESPERA
