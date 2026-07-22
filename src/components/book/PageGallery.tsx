@@ -107,7 +107,7 @@ export function PageGallery() {
   };
 
   return (
-    <PageFrame pageNumber="V">
+    <PageFrame pageNumber="VI">
       <div className="flex flex-col items-center justify-between h-full gap-2 fade-up py-1">
         <div className="flex flex-col items-center gap-1">
           <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
