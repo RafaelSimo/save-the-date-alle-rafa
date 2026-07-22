@@ -3,7 +3,7 @@ import monogram from "@/assets/ar-monogram-transparent.png";
 
 export function PageFinal() {
   return (
-    <PageFrame pageNumber="VII">
+    <PageFrame pageNumber="VIII">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up text-center">
         <div className="ornament text-lg sm:text-2xl">— ❦ —</div>
         <h2 className="font-display text-[22px] sm:text-[30px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)] max-w-[300px]">

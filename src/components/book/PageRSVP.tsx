@@ -44,7 +44,7 @@ export function PageRSVP() {
   };
 
   return (
-    <PageFrame pageNumber="VIII">
+    <PageFrame pageNumber="IX">
       {sent ? (
         <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up text-center px-2 sm:px-4">
           <div className="ornament text-lg sm:text-2xl">— ❦ —</div>

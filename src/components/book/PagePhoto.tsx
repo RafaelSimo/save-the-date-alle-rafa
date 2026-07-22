@@ -21,7 +21,7 @@ export function PagePhoto() {
           </div>
         </div>
         <p className="font-serif italic text-[var(--ink)] text-[14px] sm:text-[16px] mt-2 sm:mt-3">
-          "Onde duas almas se encontram, começa para sempre."
+          "Onde duas almas se encontram, o amor começa para sempre."
         </p>
       </div>
     </PageFrame>
