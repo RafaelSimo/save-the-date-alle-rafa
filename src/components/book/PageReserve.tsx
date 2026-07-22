@@ -32,8 +32,8 @@ export function PageReserve() {
           celebraremos nossa união matrimonial.
           <br />
           <br />
-          Reserve o dia 21 de novembro de 2026 para celebrar, ao nosso, este
-          momento único.
+          Reserve o dia 21 de novembro de 2026 para celebrar, ao nosso lado,
+          este momento único.
           <br />
           <br />
           Nosso casamento será celebrado em uma cerimônia religiosa, seguida de
