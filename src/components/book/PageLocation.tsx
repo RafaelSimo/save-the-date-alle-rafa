@@ -3,7 +3,7 @@ import manausLocation from "@/assets/manaus-location.png";
 
 export function PageLocation() {
   return (
-    <PageFrame pageNumber="VI">
+    <PageFrame pageNumber="VII">
       <div className="flex flex-col items-center justify-center h-full gap-3 sm:gap-5 fade-up">
         <p className="font-serif tracking-[0.4em] text-[10px] sm:text-[12px] uppercase text-[var(--gold-deep)]">
           O Lugar

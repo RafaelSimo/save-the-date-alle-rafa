@@ -45,13 +45,14 @@ import { PageReserve } from "./book/PageReserve";
 import { PagePhoto } from "./book/PagePhoto";
 import { PageCountdown } from "./book/PageCountdown";
 import { PageStory } from "./book/PageStory";
+import { PageGallery } from "./book/PageGallery";
 import { PageProposal } from "./book/PageProposal";
 import { PageLocation } from "./book/PageLocation";
 import { PageFinal } from "./book/PageFinal";
 import { PageRSVP } from "./book/PageRSVP";
 import { BackCover } from "./book/BackCover";
 
-const RSVP_KEY = "p8";
+const RSVP_KEY = "p9";
 
 const pages = [
   { key: "cover", el: <Cover />, kind: "hard" as const },
@@ -59,9 +60,10 @@ const pages = [
   { key: "p2", el: <PagePhoto />, kind: "soft" as const },
   { key: "p3", el: <PageCountdown />, kind: "soft" as const },
   { key: "p4", el: <PageStory />, kind: "soft" as const },
-  { key: "p5", el: <PageProposal />, kind: "soft" as const },
-  { key: "p6", el: <PageLocation />, kind: "soft" as const },
-  { key: "p7", el: <PageFinal />, kind: "soft" as const },
+  { key: "p5", el: <PageGallery />, kind: "soft" as const },
+  { key: "p6", el: <PageProposal />, kind: "soft" as const },
+  { key: "p7", el: <PageLocation />, kind: "soft" as const },
+  { key: "p8", el: <PageFinal />, kind: "soft" as const },
   { key: RSVP_KEY, el: <PageRSVP />, kind: "soft" as const },
   { key: "back", el: <BackCover />, kind: "hard" as const },
 ];
