@@ -159,7 +159,7 @@ export function PageRSVP({
             </div>
 
             <p className="font-serif italic text-center text-(--ink) text-[13px] sm:text-[15px]">
-              Deseja receber nosso convite oficial?
+              PODEMOS CONFIRMAR A SUA PRESENÇA?
             </p>
 
             <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
