@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Particles({ count = 18 }: { count?: number }) {
+function Particles({ count = 30 }: { count?: number }) {
   const [particles, setParticles] = useState<
     {
       id: number;
@@ -38,14 +38,19 @@ function Particles({ count = 18 }: { count?: number }) {
   >([]);
   useEffect(() => {
     setParticles(
-      Array.from({ length: count }).map((_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        delay: Math.random() * 8,
-        duration: 10 + Math.random() * 14,
-        dx: (Math.random() - 0.5) * 80,
-        size: 2 + Math.random() * 4,
-      })),
+      Array.from({ length: count }).map((_, i) => {
+        const duration = 4.5 + Math.random() * 5.5; // 4.5s a 10s (mais rápido)
+        // Delays negativos garantem que as partículas já estejam caindo assim que a página carrega
+        const delay = -Math.random() * duration;
+        return {
+          id: i,
+          left: Math.random() * 100,
+          delay: Math.round(delay * 100) / 100,
+          duration: Math.round(duration * 100) / 100,
+          dx: (Math.random() - 0.5) * 70,
+          size: 2.5 + Math.random() * 3.5,
+        };
+      }),
     );
   }, [count]);
   return (
