@@ -11,7 +11,17 @@ export function PageFinal() {
         </h2>
         <div className="gold-line w-20 sm:w-24" />
         <p className="font-serif italic text-[var(--ink)] text-[14px] sm:text-[16px] max-w-[280px]">
-          Em breve você receberá nosso convite oficial.
+          Sua resposta é muito importante para nós. Nos próximos instantes,
+          gostaríamos de saber se poderemos contar com a sua presença neste dia
+          tão especial. Pedimos, gentilmente, que sua resposta seja enviada em
+          até <b>15 dias</b>, para que possamos organizar cada detalhe com
+          carinho e, em breve, encaminhar o convite oficial.
+          <br />
+          <br />
+          Caso não recebamos sua resposta dentro do prazo informado, daremos
+          continuidade à organização do casamento, com o encerramento da lista
+          de confirmações, e compreenderemos, com todo o carinho, que não será
+          possível contar com sua presença nesta celebração
         </p>
         <div className="flex flex-col items-center gap-1 mt-4 sm:mt-6">
           <img

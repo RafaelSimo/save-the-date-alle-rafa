@@ -9,7 +9,7 @@ export function PageReserve() {
           Capítulo Um
         </p>
         <h2 className="font-display text-[22px] sm:text-[30px] tracking-[0.06em] uppercase leading-tight text-[var(--emerald)]">
-          Reserve Esta Data
+          SAVE THE DATE
         </h2>
         <div className="gold-line w-20 sm:w-24" />
 
@@ -28,14 +28,17 @@ export function PageReserve() {
         </div>
 
         <p className="font-serif text-[13px] sm:text-[15px] leading-relaxed text-[var(--ink)] max-w-[320px]">
-          Estamos preparando um dos dias mais importantes de nossas vidas.
+          Com imensa felicidade, compartilhamos com você a data em que
+          celebraremos nossa união matrimonial.
           <br />
           <br />
-          Em breve você receberá nosso convite oficial.
+          Reserve o dia 21 de novembro de 2026 para celebrar, ao nosso, este
+          momento único.
           <br />
           <br />
-          Até lá, queremos compartilhar com você a alegria de saber que este
-          momento está chegando.
+          Nosso casamento será celebrado em uma cerimônia religiosa, seguida de
+          recepção. Será uma honra contar com sua presença para testemunhar o
+          início deste novo capítulo de nossas vidas
         </p>
       </div>
     </PageFrame>
