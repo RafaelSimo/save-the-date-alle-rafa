@@ -171,7 +171,7 @@ export function FlipBook() {
         mobileScrollSupport: true,
         usePortrait: true,
         drawShadow: !isMobile, // Desativa cálculo de sombra 3D no mobile para melhor performance GPU
-        flippingTime: isMobile ? 500 : 600, // Animação ligeiramente mais rápida no mobile
+        flippingTime: isMobile ? 1500 : 1200, // Transição lenta, elegante e graciosa
         swipeDistance: 30,
         clickEventForward: true,
         useMouseEvents: true,
