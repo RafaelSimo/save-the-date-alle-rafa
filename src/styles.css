@@ -522,4 +522,36 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
+}
+
+/* ===== ACCESSIBILITY SYSTEM (A11Y) ===== */
+
+/* Focus Visible outline for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 3px !important;
+}
+
+/* Skip link styles */
+.a11y-skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  background: #0f5d3a;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: top 0.2s ease;
+}
+
+.a11y-skip-link:focus {
+  top: 16px;
+}
+
+
+
+

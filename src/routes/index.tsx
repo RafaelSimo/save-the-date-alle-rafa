@@ -142,7 +142,7 @@ function Index() {
   };
 
   return (
-    <main className="fixed inset-0 w-full h-full overflow-hidden">
+    <main id="main-content" className="fixed inset-0 w-full h-full overflow-hidden">
       {stage !== "book" && <Particles />}
       {stage === "opening" && <Leaves />}
 
