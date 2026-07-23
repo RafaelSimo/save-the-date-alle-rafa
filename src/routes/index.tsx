@@ -132,13 +132,13 @@ function Index() {
 
   useEffect(() => {
     setMounted(true);
-    const t = setTimeout(() => setShowBtn(true), 2200);
+    const t = setTimeout(() => setShowBtn(true), 500);
     return () => clearTimeout(t);
   }, []);
 
   const openBook = () => {
     setStage("opening");
-    setTimeout(() => setStage("book"), 1400);
+    setTimeout(() => setStage("book"), 1000);
   };
 
   return (
@@ -187,7 +187,7 @@ function Index() {
 
           {/* Botão */}
           <div
-            className={`mt-12 sm:mt-14 transition-all duration-1000 ${
+            className={`mt-12 sm:mt-14 transition-all duration-500 ${
               showBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
