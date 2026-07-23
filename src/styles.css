@@ -514,3 +514,12 @@ body {
       radial-gradient(circle at 80% 70%, rgba(15, 93, 58, 0.05), transparent 50%);
   }
 }
+
+/* Hide scrollbars for clean book page layout */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

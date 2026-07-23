@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { PageFrame } from "./PageFrame";
 
@@ -49,6 +49,31 @@ const galleryPhotos = [
 export function PageGallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  // Intercepta nativamente o início do toque (pointerdown/touchstart/mousedown) na grade de fotos
+  // para que a biblioteca do livro nunca inicie uma virada de página, permitindo contudo
+  // que o evento de clique (click) chegue aos botões para abrir a imagem ampliada.
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
+    const stopStartPointer = (e: Event) => {
+      e.stopPropagation();
+    };
+
+    const startEvents = ["touchstart", "pointerdown", "mousedown"];
+
+    startEvents.forEach((evt) => {
+      el.addEventListener(evt, stopStartPointer, { capture: true });
+    });
+
+    return () => {
+      startEvents.forEach((evt) => {
+        el.removeEventListener(evt, stopStartPointer, { capture: true });
+      });
+    };
+  }, []);
 
   // Suporte à tecla ESC para fechar o lightbox e setas do teclado para navegar
   useEffect(() => {
@@ -120,12 +145,25 @@ export function PageGallery() {
         </div>
 
         {/* Grid de 20 miniaturas (4 colunas x 5 linhas) */}
-        <div className="grid grid-cols-4 gap-1.5 sm:gap-2 w-full max-w-[320px] sm:max-w-[360px] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.35)] shadow-inner rounded-sm my-auto">
+        <div
+          ref={gridRef}
+          onClick={(e) => e.stopPropagation()}
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+          className="grid grid-cols-4 gap-1.5 sm:gap-2 w-full max-w-[320px] sm:max-w-[360px] p-1.5 bg-[var(--pearl)] border border-[rgba(212,175,55,0.35)] shadow-inner rounded-sm my-auto"
+        >
           {galleryPhotos.map((photo, idx) => (
             <button
               key={idx}
               type="button"
-              onClick={() => setSelectedIndex(idx)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex(idx);
+              }}
+              onPointerDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
               className="relative aspect-square w-full border border-[var(--gold)]/40 overflow-hidden bg-black/10 group cursor-pointer transition-transform duration-200 hover:scale-105 hover:border-[var(--gold)] hover:shadow-md focus:outline-none"
               title={`Ver foto ${idx + 1}`}
             >
@@ -150,7 +188,11 @@ export function PageGallery() {
         createPortal(
           <div
             className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-6 transition-opacity animate-in fade-in duration-200"
-            onClick={() => setSelectedIndex(null)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedIndex(null);
+            }}
+            onPointerDown={(e) => e.stopPropagation()}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
