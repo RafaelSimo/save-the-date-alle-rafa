@@ -5,8 +5,10 @@ import { PageFlip } from "page-flip";
 
 function getBookSize() {
   const vw = window.innerWidth;
-  const vh = window.visualViewport?.height ?? window.innerHeight;
   const isMobile = vw < 640;
+  // On mobile, visualViewport.height shrinks drastically when the virtual keyboard opens.
+  // Using window.innerHeight guarantees stable book dimensions when typing in form inputs.
+  const vh = isMobile ? window.innerHeight : (window.visualViewport?.height ?? window.innerHeight);
   const safeWidth = Math.max(240, vw - (isMobile ? 16 : 24));
   const safeHeight = Math.max(320, vh - (isMobile ? 24 : 64));
   const ratio = 1.55;
@@ -258,23 +260,42 @@ export function FlipBook() {
     const mountedAt = Date.now();
     const STARTUP_GRACE_MS = 1200;
 
+    const isInputFocused = () => {
+      const active = document.activeElement;
+      if (!active) return false;
+      const tag = active.tagName.toUpperCase();
+      return (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT" ||
+        (active as HTMLElement).isContentEditable
+      );
+    };
+
     let lastWidth = window.innerWidth;
-    let lastHeight = window.visualViewport?.height ?? window.innerHeight;
+    let lastHeight = window.innerHeight;
     let resizeTimeout: number | undefined;
 
     const handleResize = () => {
-      const currentWidth = window.innerWidth;
-      const currentHeight = window.visualViewport?.height ?? window.innerHeight;
+      // FIX: Never destroy/reinitialize the book while typing in an input/textarea!
+      if (isInputFocused()) return;
 
-      const widthChanged = currentWidth !== lastWidth;
+      const currentWidth = window.innerWidth;
+      const currentHeight = window.innerHeight;
+      const isMobile = currentWidth < 640;
+
+      const widthChanged = Math.abs(currentWidth - lastWidth) > 5;
       const heightChanged = Math.abs(currentHeight - lastHeight) > 80;
 
-      if (widthChanged || heightChanged) {
+      // On mobile, height changes are caused by virtual keyboard opening/closing.
+      // We ONLY reinitialize the book on mobile if screen width changed (e.g. orientation flip).
+      if (widthChanged || (!isMobile && heightChanged)) {
         lastWidth = currentWidth;
         lastHeight = currentHeight;
 
         if (resizeTimeout) window.clearTimeout(resizeTimeout);
         resizeTimeout = window.setTimeout(() => {
+          if (isInputFocused()) return;
           const withinGracePeriod = Date.now() - mountedAt < STARTUP_GRACE_MS;
           if (flippingNow) return;
           if (withinGracePeriod && !widthChanged) return;
