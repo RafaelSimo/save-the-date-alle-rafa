@@ -199,15 +199,25 @@ export const submitRSVP = createServerFn({ method: "POST" })
       </html>
     `;
 
+    const fromAddress = config.smtpFrom?.includes("<")
+      ? config.smtpFrom
+      : `"Save The Date" <${config.smtpFrom || config.smtpUser}>`;
+
     const mailOptions = {
-      from: `"Save The Date" <${config.smtpFrom}>`,
+      from: fromAddress,
       to: config.smtpTo,
       subject: `RSVP: ${data.name} - ${isYes ? "CONFIRMADO" : "NÃO COMPARECER"}`,
       text: `Resposta de RSVP:\n\nNome: ${data.name}\nAcompanhante: ${companion}\nResposta: ${statusText}\nMensagem: ${userMessage}`,
       html: htmlContent,
     };
 
-    await transporter.sendMail(mailOptions);
-
-    return { success: true };
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("RSVP email sent successfully for:", data.name);
+      return { success: true, emailSent: true };
+    } catch (mailError) {
+      console.error("Error sending RSVP email:", mailError);
+      // Fallback: Return success so the user's submission is accepted even if SMTP fails
+      return { success: true, emailSent: false };
+    }
   });
