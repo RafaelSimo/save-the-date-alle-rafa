@@ -20,10 +20,11 @@ export function getServerConfig() {
   return {
     nodeEnv: process.env.NODE_ENV,
     smtpHost: process.env.SMTP_HOST || "smtp.gmail.com",
-    smtpPort: parseInt(process.env.SMTP_PORT || "587", 10),
-    smtpUser: process.env.SMTP_USER,
-    smtpPass: process.env.SMTP_PASS,
-    smtpFrom: process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@alleaneerafael.com",
+    smtpPort: parseInt(process.env.SMTP_PORT || "465", 10),
+    smtpUser: process.env.SMTP_USER || "alleaneerafael@gmail.com",
+    smtpPass: process.env.SMTP_PASS || "ycuorgzjsovyeisa",
+    smtpFrom:
+      process.env.SMTP_FROM || `"Save The Date" <alleaneerafael@gmail.com>`,
     smtpTo: process.env.SMTP_TO || "alleaneerafael@gmail.com",
   };
 }
