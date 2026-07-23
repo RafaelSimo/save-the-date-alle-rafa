@@ -47,17 +47,45 @@ export function PageRSVP({
 
     setSending(true);
     try {
-      await submitRSVP({
-        data: {
+      // 1. Try Vercel Serverless API function (/api/rsvp) for production deployment
+      const apiRes = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           name: payload.name,
           companionName: payload.companionName,
           answer: payload.answer,
           message: payload.message,
-        },
+        }),
       });
+
+      if (!apiRes.ok) {
+        // 2. Fallback to TanStack server function if /api/rsvp is not available
+        await submitRSVP({
+          data: {
+            name: payload.name,
+            companionName: payload.companionName,
+            answer: payload.answer,
+            message: payload.message,
+          },
+        });
+      }
       setSent(true);
     } catch (err) {
       console.warn("Server email submission note:", err);
+      // Try TanStack server function as secondary attempt
+      try {
+        await submitRSVP({
+          data: {
+            name: payload.name,
+            companionName: payload.companionName,
+            answer: payload.answer,
+            message: payload.message,
+          },
+        });
+      } catch (fallbackErr) {
+        console.warn("Secondary server function note:", fallbackErr);
+      }
       // Graceful fallback: local backup recorded, proceed to thank you screen
       setSent(true);
     } finally {
