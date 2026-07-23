@@ -196,11 +196,11 @@ export function AccessibilityToolbar() {
       {selectedText && (
         <button
           onClick={() => speakText(selectedText.text)}
-          className="fixed z-50 flex items-center gap-1.5 rounded-full bg-amber-400 px-3.5 py-1.5 text-xs font-bold text-black shadow-xl transition-all hover:scale-105 active:scale-95 animate-bounce border border-black/20"
+          className="fixed z-50 flex items-center gap-1.5 rounded-full bg-[#084023] border border-[#d4af37]/70 px-3.5 py-1.5 text-xs font-bold text-[#f4e29a] shadow-xl transition-all hover:scale-105 active:scale-95 animate-bounce"
           style={{ top: `${selectedText.y}px`, left: `${selectedText.x}px` }}
           aria-label="Ouvir texto selecionado"
         >
-          <Volume2 className="h-4 w-4" />
+          <Volume2 className="h-4 w-4 text-[#d4af37]" />
           <span>Ouvir seleção</span>
         </button>
       )}
@@ -221,14 +221,14 @@ export function AccessibilityToolbar() {
           }}
           aria-expanded={isOpen}
           aria-label="Leitor de Voz em Áudio"
-          className="group relative flex items-center gap-2 rounded-full border border-amber-500/50 bg-neutral-900/90 px-4 py-3 text-amber-400 shadow-2xl backdrop-blur-md transition-all hover:border-amber-400 hover:bg-neutral-800 hover:text-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-500/50"
+          className="group relative flex items-center gap-2 rounded-full border border-[#d4af37]/50 bg-[#084023]/90 px-4 py-3 text-[#f4e29a] shadow-[0_10px_30px_-5px_rgba(8,64,35,0.8),0_0_15px_rgba(212,175,55,0.2)] backdrop-blur-md transition-all hover:border-[#d4af37] hover:bg-[#0f5d3a] hover:text-white focus:outline-none focus:ring-4 focus:ring-[#d4af37]/40"
         >
           <Volume2
-            className={`h-6 w-6 transition-transform ${
+            className={`h-6 w-6 text-[#d4af37] transition-transform ${
               isSpeaking && !isPaused ? "animate-pulse scale-110" : ""
             }`}
           />
-          <span className="hidden text-sm font-semibold sm:inline">
+          <span className="hidden text-sm font-semibold sm:inline tracking-wide font-serif">
             {isSpeaking
               ? isPaused
                 ? "Leitura Pausada"
@@ -242,10 +242,10 @@ export function AccessibilityToolbar() {
               e.stopPropagation();
               setIsOpen(!isOpen);
             }}
-            className="ml-1 rounded-full p-1 hover:bg-amber-500/20 transition-colors"
+            className="ml-1 rounded-full p-1 hover:bg-[#d4af37]/20 transition-colors"
             title="Controles de Áudio"
           >
-            <span className="text-[10px] uppercase tracking-wider underline">
+            <span className="text-[10px] uppercase tracking-wider text-[#d4af37] underline">
               {isOpen ? "Fechar" : "Opções"}
             </span>
           </span>
@@ -254,23 +254,23 @@ export function AccessibilityToolbar() {
 
       {/* Audio Controls Modal / Panel */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:p-6 bg-black/30 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:p-6 bg-black/40 backdrop-blur-xs">
           <div
-            className="w-full max-w-xs rounded-2xl border border-amber-500/40 bg-neutral-950/95 p-5 text-neutral-100 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4"
+            className="w-full max-w-xs rounded-2xl border border-[#d4af37]/40 bg-[#052615]/95 p-5 text-[#fdfcf8] shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4"
             role="dialog"
             aria-label="Controles do Leitor de Voz"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+            <div className="flex items-center justify-between border-b border-[#0f5d3a] pb-3">
               <div className="flex items-center gap-2">
-                <Volume2 className="h-5 w-5 text-amber-400" />
-                <h2 className="text-sm font-bold tracking-wide text-amber-400">
+                <Volume2 className="h-5 w-5 text-[#d4af37]" />
+                <h2 className="text-sm font-bold tracking-wide text-[#f4e29a] font-serif">
                   Leitor de Voz
                 </h2>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded-lg p-1 text-neutral-400 hover:bg-neutral-800 hover:text-white transition-colors"
+                className="rounded-lg p-1 text-[#fdfcf8]/70 hover:bg-[#0f5d3a] hover:text-white transition-colors"
                 aria-label="Fechar controles"
               >
                 <X className="h-5 w-5" />
@@ -283,16 +283,16 @@ export function AccessibilityToolbar() {
                 {!isSpeaking ? (
                   <button
                     onClick={() => speakText()}
-                    className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-2.5 font-bold text-black hover:bg-amber-400 transition-colors shadow-lg active:scale-95"
+                    className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#a8862a] via-[#d4af37] to-[#f4e29a] px-4 py-2.5 font-bold text-[#084023] hover:brightness-110 transition-all shadow-[0_4px_14px_rgba(212,175,55,0.35)] active:scale-95"
                   >
                     <Play className="h-4 w-4 fill-current" />
-                    <span>Iniciar Leitura</span>
+                    <span className="font-semibold tracking-wide">Iniciar Leitura</span>
                   </button>
                 ) : (
                   <>
                     <button
                       onClick={pauseSpeech}
-                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-neutral-800 border border-amber-500/50 px-3 py-2.5 font-semibold text-amber-300 hover:bg-neutral-700 transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[#084023] border border-[#d4af37]/50 px-3 py-2.5 font-semibold text-[#f4e29a] hover:bg-[#0f5d3a] transition-colors"
                     >
                       {isPaused ? (
                         <Play className="h-4 w-4 fill-current" />
@@ -304,7 +304,7 @@ export function AccessibilityToolbar() {
 
                     <button
                       onClick={stopSpeech}
-                      className="flex items-center justify-center rounded-xl bg-red-950/80 border border-red-700/50 p-2.5 text-red-300 hover:bg-red-900 transition-colors"
+                      className="flex items-center justify-center rounded-xl bg-red-950/80 border border-red-700/50 p-2.5 text-red-200 hover:bg-red-900 transition-colors"
                       aria-label="Parar leitura"
                     >
                       <Square className="h-4 w-4 fill-current" />
@@ -314,10 +314,10 @@ export function AccessibilityToolbar() {
               </div>
 
               {/* Speed selection */}
-              <div className="rounded-xl border border-neutral-800 bg-neutral-900/80 p-3 text-xs">
-                <div className="flex items-center justify-between text-neutral-400 mb-2 font-medium">
+              <div className="rounded-xl border border-[#0f5d3a] bg-[#031c0e]/80 p-3 text-xs">
+                <div className="flex items-center justify-between text-[#fdfcf8]/80 mb-2 font-medium">
                   <span>Velocidade de Leitura:</span>
-                  <span className="text-amber-400 font-bold">
+                  <span className="text-[#d4af37] font-bold">
                     {speechRate}x
                   </span>
                 </div>
@@ -331,8 +331,8 @@ export function AccessibilityToolbar() {
                       }}
                       className={`py-1.5 px-2 rounded-lg text-xs font-semibold border transition-all ${
                         speechRate === rate
-                          ? "border-amber-400 bg-amber-500/20 text-amber-300 font-bold"
-                          : "border-neutral-800 bg-neutral-800 text-neutral-300 hover:border-neutral-700"
+                          ? "border-[#d4af37] bg-[#d4af37]/20 text-[#f4e29a] font-bold"
+                          : "border-[#0f5d3a] bg-[#084023]/60 text-[#fdfcf8]/80 hover:border-[#d4af37]/40"
                       }`}
                     >
                       {rate === 0.8
@@ -346,7 +346,7 @@ export function AccessibilityToolbar() {
               </div>
             </div>
 
-            <p className="mt-3 text-[11px] text-neutral-400 text-center italic">
+            <p className="mt-3 text-[11px] text-[#fdfcf8]/60 text-center italic">
               Você também pode selecionar qualquer texto da tela para ouvi-lo.
             </p>
           </div>
