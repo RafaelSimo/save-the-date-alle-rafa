@@ -142,13 +142,13 @@ function Index() {
   };
 
   return (
-    <main className="fixed inset-0 w-screen h-screen overflow-hidden">
+    <main className="fixed inset-0 w-full h-full overflow-hidden">
       {stage !== "book" && <Particles />}
       {stage === "opening" && <Leaves />}
 
       {/* INTRO */}
       <section
-        className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-1000 ${
+        className={`fixed inset-0 z-20 flex flex-col items-center justify-center px-6 text-center transition-opacity duration-1000 ${
           stage === "intro" ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         style={{
@@ -204,7 +204,7 @@ function Index() {
       {/* OPENING SHEEN */}
       {stage === "opening" && (
         <div
-          className="absolute inset-0 z-30 pointer-events-none"
+          className="fixed inset-0 z-30 pointer-events-none"
           style={{
             background:
               "radial-gradient(circle at center, rgba(212,175,55,0.35), transparent 60%)",
@@ -215,7 +215,7 @@ function Index() {
 
       {/* BOOK */}
       <section
-        className={`absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-1000 ${
+        className={`fixed inset-0 z-10 flex items-center justify-center transition-opacity duration-1000 ${
           stage === "book" ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >

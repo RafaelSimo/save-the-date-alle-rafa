@@ -5,10 +5,10 @@ import { PageFlip } from "page-flip";
 
 function getBookSize() {
   const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const vh = window.visualViewport?.height ?? window.innerHeight;
   const isMobile = vw < 640;
-  const safeWidth = Math.max(240, vw - (isMobile ? 12 : 24));
-  const safeHeight = Math.max(320, vh - (isMobile ? 96 : 72));
+  const safeWidth = Math.max(240, vw - (isMobile ? 16 : 24));
+  const safeHeight = Math.max(320, vh - (isMobile ? 24 : 64));
   const ratio = 1.55;
 
   let width = Math.min(safeWidth, 700);
@@ -178,7 +178,7 @@ export function FlipBook() {
         clickEventForward: true,
         useMouseEvents: true,
         autoSize: false,
-        showPageCorners: true,
+        showPageCorners: false,
       });
 
       flipRef.current = pf;
@@ -225,17 +225,14 @@ export function FlipBook() {
         }
       });
 
-      rafId = requestAnimationFrame(() => {
+      setTimeout(() => {
         if (!containerRef.current || destroyed) return;
         try {
-          const pageEls = containerRef.current?.querySelectorAll(".book-page");
+          const pageEls = containerRef.current.querySelectorAll(".book-page");
           if (pageEls && pageEls.length) {
             pf.loadFromHTML(pageEls);
             if (pageIndexRef.current > 0) {
               pf.turnToPage(pageIndexRef.current);
-              // FIX #9 (caso de borda): turnToPage pode não disparar
-              // changeState "read", então garantimos aqui que o
-              // overlay volte a aparecer se o pulo caiu na página do RSVP.
               if (pageIndexRef.current === RSVP_INDEX) {
                 overlayVisibleRef.current = true;
                 setIsFlipping(false);
@@ -243,11 +240,11 @@ export function FlipBook() {
               }
             }
           }
-          requestAnimationFrame(measureOverlay);
+          measureOverlay();
         } catch (err) {
           console.error("PageFlip load error:", err);
         }
-      });
+      }, 50);
     };
 
     initializeBook();
@@ -262,9 +259,6 @@ export function FlipBook() {
     const STARTUP_GRACE_MS = 1200;
 
     let lastWidth = window.innerWidth;
-    // FIX #6: usa visualViewport.height quando disponível — é mais
-    // confiável no mobile que window.innerHeight (que às vezes inclui
-    // a barra de endereço do navegador).
     let lastHeight = window.visualViewport?.height ?? window.innerHeight;
     let resizeTimeout: number | undefined;
 
@@ -281,10 +275,6 @@ export function FlipBook() {
 
         if (resizeTimeout) window.clearTimeout(resizeTimeout);
         resizeTimeout = window.setTimeout(() => {
-          // FIX #2: não recria se estiver no meio de um flip.
-          // FIX #9: não recria dentro da janela de proteção inicial,
-          // a menos que a mudança de largura seja real (rotação de
-          // tela), que sempre deve ser respeitada.
           const withinGracePeriod = Date.now() - mountedAt < STARTUP_GRACE_MS;
           if (flippingNow) return;
           if (withinGracePeriod && !widthChanged) return;
@@ -352,10 +342,10 @@ export function FlipBook() {
   const showOverlay = overlayActive;
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-between py-1">
+    <div className="relative w-full h-full flex flex-col items-center justify-between py-2 sm:py-3 select-none">
       <div
         ref={stageRef}
-        className="book-stage relative w-full flex-1 flex items-center justify-center px-1 sm:px-2"
+        className="book-stage relative w-full flex-1 flex items-center justify-center px-1 sm:px-2 overflow-hidden no-scrollbar"
       >
         <div
           ref={containerRef}
@@ -390,24 +380,26 @@ export function FlipBook() {
           </div>
         )}
       </div>
-      <div className="pt-2 pb-2 flex items-center gap-3 select-none">
+
+      {/* Navegação de páginas exclusiva para web/desktop (posicionada abaixo do livro) */}
+      <div className="hidden sm:flex items-center gap-3 select-none pt-2 pb-1 z-20">
         <button
           aria-label="Página anterior"
           onClick={handleFlipPrev}
-          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100 cursor-pointer"
+          className="text-[var(--gold)] text-2xl px-3 opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
         >
           ‹
         </button>
         <span
           ref={pageNumberRef}
-          className="font-serif text-xs tracking-[0.3em] text-[var(--gold)]/80"
+          className="font-serif text-xs tracking-[0.35em] text-[var(--gold-soft)] opacity-90"
         >
           {String(pageIndexRef.current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
         <button
           aria-label="Próxima página"
           onClick={handleFlipNext}
-          className="text-[var(--gold)] text-xl px-3 opacity-80 hover:opacity-100 cursor-pointer"
+          className="text-[var(--gold)] text-2xl px-3 opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
         >
           ›
         </button>
