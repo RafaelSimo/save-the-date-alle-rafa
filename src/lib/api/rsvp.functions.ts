@@ -21,13 +21,21 @@ export const submitRSVP = createServerFn({ method: "POST" })
       throw new Error("O servidor de e-mail não está configurado. Por favor, configure as variáveis de ambiente SMTP.");
     }
 
+    const isSecure = config.smtpPort === 465;
+
     const transporter = nodemailer.createTransport({
       host: config.smtpHost,
       port: config.smtpPort,
-      secure: config.smtpPort === 465, // true for 465, false for 587/other ports
+      secure: isSecure,
       auth: {
         user: config.smtpUser,
         pass: config.smtpPass,
+      },
+      connectionTimeout: 10000,
+      greetingTimeout: 5000,
+      socketTimeout: 10000,
+      tls: {
+        rejectUnauthorized: false,
       },
     });
 

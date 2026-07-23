@@ -73,6 +73,13 @@ export function PageRSVP({
     }`,
   );
 
+  const handleInputFocus = () => {
+    // Keep window scroll fixed at top on mobile keyboard open
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as never });
+    }, 50);
+  };
+
   return (
     <PageFrame pageNumber="IX">
       {sent ? (
@@ -159,6 +166,8 @@ export function PageRSVP({
               <input
                 type="text"
                 value={name}
+                onFocus={handleInputFocus}
+                onBlur={handleInputFocus}
                 onChange={(e) => setName(e.target.value)}
                 className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[14px] sm:text-[16px] py-0.5 sm:py-1 transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Seu nome completo"
@@ -173,6 +182,8 @@ export function PageRSVP({
               <input
                 type="text"
                 value={companionName}
+                onFocus={handleInputFocus}
+                onBlur={handleInputFocus}
                 onChange={(e) => setCompanionName(e.target.value)}
                 className="bg-transparent border-b border-(--gold)/50 focus:border-(--gold) outline-none font-serif text-(--ink) text-[14px] sm:text-[16px] py-0.5 sm:py-1 transition-colors text-left placeholder:text-(--ink)/50"
                 placeholder="Nome do acompanhante"
@@ -186,6 +197,8 @@ export function PageRSVP({
               </label>
               <textarea
                 value={message}
+                onFocus={handleInputFocus}
+                onBlur={handleInputFocus}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={1}
                 className="bg-transparent border border-(--gold)/30 focus:border-(--gold) outline-none font-serif italic text-(--ink) text-[13px] sm:text-[15px] p-1 sm:p-1.5 resize-none transition-colors text-left placeholder:text-(--ink)/50 h-10 sm:h-12"
