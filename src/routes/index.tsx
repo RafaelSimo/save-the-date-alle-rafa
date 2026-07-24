@@ -9,17 +9,29 @@ const FlipBook = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alleane & Rafael — Save the Date" },
+      { title: "Alleane & Rafael" },
       {
         name: "description",
         content:
           "21 de Novembro de 2026 · Manaus, Amazonas — Uma nova história está prestes a começar.",
       },
-      { property: "og:title", content: "Alleane & Rafael — Save the Date" },
+      { property: "og:title", content: "Alleane & Rafael" },
       {
         property: "og:description",
+        content: "21 de Novembro de 2026 · Manaus, Amazonas — Uma nova história está prestes a começar.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Alleane & Rafael" },
+      { property: "og:image", content: monogram },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: "Monograma Alleane & Rafael" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Alleane & Rafael" },
+      {
+        name: "twitter:description",
         content: "21 de Novembro de 2026 · Manaus, Amazonas",
       },
+      { name: "twitter:image", content: monogram },
     ],
   }),
   component: Index,
