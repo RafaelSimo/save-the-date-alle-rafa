@@ -10,6 +10,7 @@ import {
 import type { ReactNode } from "react";
 
 import { AccessibilityToolbar } from "../components/AccessibilityToolbar";
+import favicon from "../assets/ar-monogram-transparent.png";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -82,24 +83,40 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           content:
             "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
         },
-        { title: "Alleane & Rafael — Save the Date" },
+        { title: "Alleane & Rafael" },
         {
           name: "description",
           content:
             "21 de Novembro de 2026 — Uma nova história está prestes a começar.",
         },
         { name: "theme-color", content: "#0F5D3A" },
-        { property: "og:title", content: "Alleane & Rafael — Save the Date" },
+        { name: "apple-mobile-web-app-title", content: "Alleane & Rafael" },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+        { property: "og:title", content: "Alleane & Rafael" },
         {
           property: "og:description",
           content:
             "21 de Novembro de 2026 — Uma nova história está prestes a começar.",
         },
         { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary" },
-        { name: "twitter:site", content: "@Lovable" },
+        { property: "og:site_name", content: "Alleane & Rafael" },
+        { property: "og:image", content: favicon },
+        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:alt", content: "Monograma Alleane & Rafael" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: "Alleane & Rafael" },
+        {
+          name: "twitter:description",
+          content:
+            "21 de Novembro de 2026 — Uma nova história está prestes a começar.",
+        },
+        { name: "twitter:image", content: favicon },
       ],
       links: [
+        { rel: "icon", type: "image/png", href: favicon },
+        { rel: "shortcut icon", type: "image/png", href: favicon },
+        { rel: "apple-touch-icon", href: favicon },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
           rel: "preconnect",
@@ -125,7 +142,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
